@@ -8,20 +8,7 @@
 >  Please read [***this document***](https://github.com/IxI-Enki/PoseUebung-021/tree/master/MusicStore.Logic/Connections) if you fork the repository.
 >
 > </div>
-
-<!--
-<div align="center">
-
-  <img src="img/postman.png" alt="postman" width=50%>
-
-  | <img src="img/url1.png" alt="url1" width=50%> | <img src="img/url2.png" alt="url2" width=50%> |
-  |:---------------------------------------------:|:---------------------------------------------:|
-
-  <img src="img/MusicStore.png" alt="uml">
-
-</div>
--->
-
+ 
 ---
 
 - ## 1.<sub>)</sub> Database
@@ -36,11 +23,11 @@
   
     |    ***Testing with Postman***                               |
     |:-----------------------------------------------------------:|
-    | <img src="img/login-postman.png" alt="postman" width=740px> | 
+    | <img src="img/login-postman.png" alt="postman" width=740px height=120px> | 
   
     |    *Valid* Login                                          |                      *Invalid* Login                      |
     |:---------------------------------------------------------:|:---------------------------------------------------------:|
-    | <img src="img/l-valid.png" alt="valid" width=400px> | <img src="img/l-invalid.png" alt="invalid" width=400px> |
+    | <img src="img/l-valid.png" alt="valid" width=420px> | <img src="img/l-invalid.png" alt="invalid" width=420px> |
   
   </div>
 
