@@ -17,13 +17,13 @@ public sealed class Genre : EntityObject, IGenre
 
         #region ___N A V I G A T I O N   P R O P E R T Y___
 
-        public List<Entities.Track>? Tracks { get; set; } = [];
+        public List<Track>? Tracks { get; set; } = [];
 
         #endregion
 
 
         #region ___M E T H O D___
-        
+
         public void CopyProperties( IGenre other )
         {
                 ArgumentNullException.ThrowIfNullOrEmpty( nameof( other ) );

@@ -28,12 +28,12 @@ public interface IAlbum : IIdentifiable
         /// <summary>
         /// Gets or sets the artist associated with the album.
         /// </summary>
-        Entities.Artist? Artist { get; set; }
+        Artist? Artist { get; set; }
 
         /// <summary>
         /// Gets or sets the tracks in the album.
         /// </summary>
-        List<Entities.Track> Tracks { get; set; }
+        List<Track> Tracks { get; set; }
 
         #endregion
 }

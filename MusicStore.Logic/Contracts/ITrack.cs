@@ -53,12 +53,12 @@ public interface ITrack : IIdentifiable
         /// <summary>
         /// Gets or sets the album associated with the track.
         /// </summary>
-        Entities.Album? Album { get; set; }
+        Album? Album { get; set; }
 
         /// <summary>
         /// Gets or sets the genre associated with the track.
         /// </summary>
-        Entities.Genre? Genre { get; set; }
+        Genre? Genre { get; set; }
 
         #endregion
 }

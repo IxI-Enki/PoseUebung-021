@@ -17,7 +17,7 @@ public sealed class Artist : EntityObject, IArtist
 
         #region ___N A V I G A T I O N   P R O P E R T Y___
 
-        public List<Entities.Album>? Albums { get; set; } = [];
+        public List<Album>? Albums { get; set; } = [];
 
         #endregion
 

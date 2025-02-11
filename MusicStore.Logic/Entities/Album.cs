@@ -22,7 +22,7 @@ public sealed class Album : EntityObject, IAlbum
 
         public Artist? Artist { get; set; }
 
-        public List<Entities.Track> Tracks { get; set; } = [];
+        public List<Track> Tracks { get; set; } = [];
 
         #endregion
 

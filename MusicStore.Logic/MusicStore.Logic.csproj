@@ -15,6 +15,9 @@
         </ItemGroup>
 
         <ItemGroup>
+                <None Update="Connections\credentials.csv">
+                  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+                </None>
                 <None Update="Connections\mssql.txt">
                         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
                 </None>

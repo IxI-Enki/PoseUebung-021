@@ -14,20 +14,28 @@ global using Microsoft.EntityFrameworkCore;
 global using MusicStore.Logic.Entities;
 global using MusicStore.Logic.Contracts;
 //
+global using Genre = MusicStore.Logic.Entities.Genre;
+global using Album = MusicStore.Logic.Entities.Album;
+global using Track = MusicStore.Logic.Entities.Track;
+global using Artist = MusicStore.Logic.Entities.Artist;
+global using EntityObject = MusicStore.Logic.Entities.EntityObject;
+//
 global using IGenre = MusicStore.Logic.Contracts.IGenre;
 global using IAlbum = MusicStore.Logic.Contracts.IAlbum;
 global using ITrack = MusicStore.Logic.Contracts.ITrack;
 global using IArtist = MusicStore.Logic.Contracts.IArtist;
+global using IContext = MusicStore.Logic.Contracts.IContext;
+global using IIdentifiable = MusicStore.Logic.Contracts.IIdentifiable;
 //
 global using Factory = MusicStore.Logic.DataContext.Factory;
 
 //   - WebAPI   
 global using MusicStore.WebAPI;
-global using MusicStore.WebAPI.Controllers;
 global using MusicStore.WebAPI.Models;
 global using MusicStore.WebAPI.Contracts;
-
-
+global using MusicStore.WebAPI.Controllers;
+//
+global using ModelObject = MusicStore.WebAPI.Models.ModelObject;
 
 
 ///   N A M E S P A C E   ///

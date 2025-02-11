@@ -24,6 +24,11 @@ global using MusicStore.Logic;
 global using MusicStore.Logic.Entities;
 global using MusicStore.Logic.Contracts;
 global using Assembly = System.Reflection.Assembly;
+//
+global using Track = MusicStore.Logic.Entities.Track;
+global using Album = MusicStore.Logic.Entities.Album;
+global using Genre = MusicStore.Logic.Entities.Genre;
+global using Artist = MusicStore.Logic.Entities.Artist;
 
 
 ///   N A M E S P A C E   ///
