@@ -1,4 +1,4 @@
-### <p align="center"> How to run the Music-Store </p>
+## <p align="center"> How to run the Music-Store </p>
  
 > [!IMPORTANT]   
 > If you forked this repository, you need to ***add your own connection string in this directory***, in order to run the console-application.
