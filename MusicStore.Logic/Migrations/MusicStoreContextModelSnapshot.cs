@@ -38,7 +38,7 @@ namespace MusicStore.Logic.Migrations
                     b.HasIndex("Title")
                         .IsUnique();
 
-                    b.ToTable("Albums");
+                    b.ToTable("Albums", (string)null);
                 });
 
             modelBuilder.Entity("MusicStore.Logic.Entities.Artist", b =>
@@ -57,7 +57,7 @@ namespace MusicStore.Logic.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("Artists");
+                    b.ToTable("Artists", (string)null);
                 });
 
             modelBuilder.Entity("MusicStore.Logic.Entities.Genre", b =>
@@ -76,7 +76,7 @@ namespace MusicStore.Logic.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.ToTable("Genres");
+                    b.ToTable("Genres", (string)null);
                 });
 
             modelBuilder.Entity("MusicStore.Logic.Entities.Track", b =>
@@ -111,7 +111,7 @@ namespace MusicStore.Logic.Migrations
                         .HasMaxLength(1024)
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("UnitPrice")
+                    b.Property<float>("UnitPrice")
                         .HasMaxLength(1024)
                         .HasColumnType("REAL");
 
@@ -124,7 +124,7 @@ namespace MusicStore.Logic.Migrations
                     b.HasIndex("Title")
                         .IsUnique();
 
-                    b.ToTable("Tracks");
+                    b.ToTable("Tracks", (string)null);
                 });
 
             modelBuilder.Entity("MusicStore.Logic.Entities.Album", b =>
