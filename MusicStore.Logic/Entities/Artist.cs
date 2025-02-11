@@ -2,7 +2,10 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+
+///   N A M E S P A C E   ///
 namespace MusicStore.Logic.Entities;
+
 
 [Table( "Artists" )]
 [Index( nameof( Name ) , IsUnique = true )]
@@ -30,12 +33,8 @@ public sealed class Artist : EntityObject, IArtist
 
         #region OVERRIDE
         public override string ToString( )
-        {
-                return new StringBuilder( )
-                        .AppendLine( Name )
-                        //.AppendLine( "------------------------" )
-                        //.AppendLine( Albums?.Select( t => t.Title ).ToString( ) )
+                => new StringBuilder( )
+                        .Append( Name )
                         .ToString( );
-        }
         #endregion
 }

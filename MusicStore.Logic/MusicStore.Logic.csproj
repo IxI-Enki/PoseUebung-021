@@ -9,8 +9,30 @@
         <ItemGroup>
                 <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.1" />
                 <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.1" />
-                <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.1"/>
-          
-  </ItemGroup>
+                <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.1" />
+                <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.1" />
+
+        </ItemGroup>
+
+        <ItemGroup>
+                <None Update="Connections\mssql.txt">
+                        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+                </None>
+                <None Update="Connections\README.md">
+                  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+                </None>
+                <None Update="Data\Albums.csv">
+                        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+                </None>
+                <None Update="Data\Artists.csv">
+                        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+                </None>
+                <None Update="Data\Genres.csv">
+                        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+                </None>
+                <None Update="Data\Tracks.csv">
+                        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+                </None>
+        </ItemGroup>
 
 </Project>

@@ -2,7 +2,10 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+
+///   N A M E S P A C E   ///
 namespace MusicStore.Logic.Entities;
+
 
 [Table( "Genres" )]
 [Index( nameof( Name ) , IsUnique = true )]
@@ -30,10 +33,8 @@ public sealed class Genre : EntityObject, IGenre
 
         #region OVERRIDE
         public override string ToString( )
-        {
-                return new StringBuilder( )
+                => new StringBuilder( )
                         .Append( Name )
                         .ToString( );
-        }
         #endregion
 }

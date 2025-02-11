@@ -33,3 +33,5 @@ MusicStore.Logic/bin/Debug/net8.0/MusicStore.Logic.pdb
 /MusicStore.WebAPI/bin/Debug/net8.0/pt-BR
 /MusicStore.WebAPI/bin/Debug/net8.0/ru
 /MusicStore.WebAPI/bin/Debug/net8.0
+/MusicStore.Logic/Connections/mssql.txt
+/MusicStore.Logic/Migrations
