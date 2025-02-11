@@ -2,7 +2,7 @@
 
 # Music Store <sub><sup>*with MSSQL Database & ASP.NET Web API ( generic Controller )*</sup></sub> 
 
->[!WARNING]
+>[!NOTE]
 > <div align="center">
 >  
 >  Please read [***this document***](https://github.com/IxI-Enki/PoseUebung-021/tree/master/MusicStore.Logic/Connections) if you fork the repository.
