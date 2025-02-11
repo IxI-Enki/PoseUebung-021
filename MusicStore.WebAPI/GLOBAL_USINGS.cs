@@ -28,6 +28,7 @@ global using IContext = MusicStore.Logic.Contracts.IContext;
 global using IIdentifiable = MusicStore.Logic.Contracts.IIdentifiable;
 //
 global using Factory = MusicStore.Logic.DataContext.Factory;
+global using CredLoader = MusicStore.Logic.DataContext.DataLoader.CredentialLoader;
 
 //   - WebAPI   
 global using MusicStore.WebAPI;

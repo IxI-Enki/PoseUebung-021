@@ -1,8 +1,6 @@
 ﻿///   N A M E S P A C E   ///
 namespace MusicStore.WebAPI.Controllers;
 
-using CredLoader = MusicStore.Logic.DataContext.DataLoader.CredentialLoader;
-
 
 [Route( "api/[controller]" )]
 [ApiController]
