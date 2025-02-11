@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MusicStore.Logic.Entities.Album">
+    <Position X="14.25" Y="6.5" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAEAEAAAAEQAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Album.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.733" />
+  </Class>
+  <Class Name="MusicStore.Logic.Entities.Artist">
+    <Position X="11.25" Y="6.5" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAQQAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Entities\Artist.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.711" />
+  </Class>
+  <Class Name="MusicStore.Logic.Entities.Genre">
+    <Position X="12.75" Y="6.5" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAEAAAAAQQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Genre.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.722" />
+  </Class>
+  <Class Name="MusicStore.Logic.Entities.Track">
+    <Position X="15.75" Y="6.5" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAACAIEAEAAIAAQAAgAAAAAAAAAAICEAAAAA=</HashCode>
+      <FileName>Entities\Track.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.756" />
+  </Class>
+  <Class Name="MusicStore.Logic.Entities.EntityObject">
+    <Position X="9.75" Y="4.25" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\EntityObject.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.14" />
+  </Class>
+  <Class Name="MusicStore.Logic.DataContext.MusicStoreContext">
+    <Position X="17.25" Y="6.5" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAQAAAAAAAgBAEAAAAAAAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>DataContext\MusicStoreContext.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MusicStore.Logic.DataContext.Factory">
+    <Position X="19" Y="6.5" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>DataContext\Factory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="MusicStore.Logic.Contracts.IAlbum">
+    <Position X="14.25" Y="3.25" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAEAAAAAAEAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IAlbum.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MusicStore.Logic.Contracts.IGenre">
+    <Position X="12.75" Y="3.25" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IGenre.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MusicStore.Logic.Contracts.IArtist">
+    <Position X="11.25" Y="3.25" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IArtist.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MusicStore.Logic.Contracts.IIdentifiable">
+    <Position X="9.75" Y="1.75" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IIdentifiable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MusicStore.Logic.Contracts.IContext">
+    <Position X="17.25" Y="3.25" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>iAAAAAAAAAAAAAAAAgBAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IContext.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="System.IDisposable">
+    <Position X="17.25" Y="1.25" Width="1.25" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="MusicStore.Logic.Contracts.ITrack">
+    <Position X="15.75" Y="3.25" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAACAIEAAAAIAAAAAgAAAAAAAAAAICEAAAAA=</HashCode>
+      <FileName>Contracts\ITrack.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
