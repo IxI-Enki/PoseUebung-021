@@ -1,7 +1,7 @@
 ## <p align="center"> How to run the Music-Store </p>
  
 > [!IMPORTANT]   
-> If you forked this repository, you need to ***add your own connection string in this directory***, in order to run the console-application.
+> If you have forked this repository, you need to ***add your own connection string in this directory***, in order to run the console-application.
 > <br>
 > The file should be named `mssql.txt` and should contain the connection string to your SQL Server database.
 > <br>
