@@ -1,11 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using MusicStore.Logic;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
-using System.Linq.Dynamic.Core;
-using MusicStore.Logic.Entities;
-
-
-///   N A M E S P A C E   ///
+﻿///   N A M E S P A C E   ///
 namespace MusicStore.ConApp;
 
 

@@ -1,4 +1,6 @@
-﻿namespace MusicStore.WebAPI.Controllers;
+﻿///   N A M E S P A C E   ///
+namespace MusicStore.WebAPI.Controllers;
+
 
 using TGenre = Models.ModelGenre;
 
@@ -14,7 +16,7 @@ public class GenresController : ControllerBase
                 using var context = Factory.CreateContext( );
 
                 return [ .. context.GenreSet
-                                   .Take( Global.MAX_COUNT )
+                                   .Take( GLOBAL_USINGS.MAX_COUNT )
                                    .AsNoTracking( )
                                    .Select( g => TGenre.Create( g ) )
                        ];

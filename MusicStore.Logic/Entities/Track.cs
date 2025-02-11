@@ -1,57 +1,72 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyModel.Resolution;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
+﻿///   N A M E S P A C E   ///
 namespace MusicStore.Logic.Entities;
+
 
 [Table( "Tracks" )]
 [Index( nameof( Title ) , IsUnique = true )]
 public sealed class Track : EntityObject, ITrack
 {
-        #region PROPERTIES
+
+        #region ___P R O P E R T I E S___ 
+
         [MaxLength( 1024 )]
         public int AlbumId { get; set; }
+
         [MaxLength( 1024 )]
         public int GenreId { get; set; }
+
         [MaxLength( 1024 )]
         public string Title { get; set; } = string.Empty;
+
         [MaxLength( 1024 )]
         public string Composer { get; set; } = string.Empty;
+
         [MaxLength( 100000 )]
         public long Milliseconds { get; set; }
+
         [MaxLength( 8000 )]
         public long Bytes { get; set; }
+
         [MaxLength( 1024 )]
         public double UnitPrice { get; set; }
+
         #endregion
 
-        #region NAVIGATION PROPERTIES
+
+        #region ___N A V I G A T I O N    P R O P E R T I E S___ 
+
         public Album? Album { get; set; }
+
         public Genre? Genre { get; set; }
+
         #endregion
 
-        #region METHODS
+
+        #region ___M E T H O D___ 
+
         public void CopyProperties( ITrack other )
         {
                 ArgumentNullException.ThrowIfNull( other , nameof( other ) );
 
                 base.CopyProperties( other );
 
+                Title = other.Title;
+                Bytes = other.Bytes;
                 AlbumId = other.AlbumId;
                 GenreId = other.GenreId;
-                Title = other.Title;
                 Composer = other.Composer;
-                Milliseconds = other.Milliseconds;
-                Bytes = other.Bytes;
                 UnitPrice = other.UnitPrice;
+                Milliseconds = other.Milliseconds;
         }
+
         #endregion
 
-        #region OVERRIDE
+
+        #region ___O V E R R I D E___ 
+
         public override string ToString( )
-        {
-                return new StringBuilder( )
+
+                => new StringBuilder( )
                         .AppendLine( $"Titel :{Title}" )
                         .AppendLine( "---------------------" )
                         .AppendLine( $"Album-Title: {Title}" )
@@ -61,6 +76,6 @@ public sealed class Track : EntityObject, ITrack
                         .AppendLine( $"Unit-Price : {UnitPrice} [€]" )
                         .AppendLine( $"Bytes      : {Bytes}" )
                         .ToString( );
-        }
+
         #endregion
 }

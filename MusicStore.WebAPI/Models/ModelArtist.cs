@@ -1,4 +1,5 @@
-﻿namespace MusicStore.WebAPI.Models;
+﻿///   N A M E S P A C E   ///
+namespace MusicStore.WebAPI.Models;
 
 public class ModelArtist : ModelObject, IArtist
 {

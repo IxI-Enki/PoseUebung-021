@@ -1,4 +1,5 @@
-﻿namespace MusicStore.WebAPI.Controllers;
+﻿///   N A M E S P A C E   ///
+namespace MusicStore.WebAPI.Controllers;
 
 using TArtist = Models.ModelArtist;
 
@@ -14,7 +15,7 @@ public class ArtistsController : ControllerBase
                 using var context = Factory.CreateContext( );
 
                 return [ .. context.ArtistSet
-                                   .Take( Global.MAX_COUNT )
+                                   .Take( GLOBAL_USINGS.MAX_COUNT )
                                    .AsNoTracking( )
                                    .Select( a => TArtist.Create( a ) )
                        ];

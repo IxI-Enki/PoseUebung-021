@@ -1,9 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-
-///   N A M E S P A C E   ///
+﻿///   N A M E S P A C E   ///
 namespace MusicStore.Logic.Entities;
 
 
@@ -11,16 +6,24 @@ namespace MusicStore.Logic.Entities;
 [Index( nameof( Name ) , IsUnique = true )]
 public sealed class Artist : EntityObject, IArtist
 {
-        #region PROPERTIES
+
+        #region ___P R O P E R TY___ 
+
         [MaxLength( 1024 )]
         public string Name { get; set; } = string.Empty;
+
         #endregion
 
-        #region NAVIGATION PROPERTIES
+
+        #region ___N A V I G A T I O N   P R O P E R T Y___
+
         public List<Entities.Album>? Albums { get; set; } = [];
+
         #endregion
 
-        #region METHODS
+
+        #region ___M E T H O D___
+
         public void CopyProperties( IArtist other )
         {
                 ArgumentNullException.ThrowIfNullOrEmpty( nameof( other ) );
@@ -29,12 +32,17 @@ public sealed class Artist : EntityObject, IArtist
 
                 Name = other.Name;
         }
+
         #endregion
 
-        #region OVERRIDE
+
+        #region ___O V E R R I D E___
+
         public override string ToString( )
+
                 => new StringBuilder( )
                         .Append( Name )
                         .ToString( );
+
         #endregion
 }

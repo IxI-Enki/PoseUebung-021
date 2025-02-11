@@ -1,7 +1,4 @@
-﻿using MusicStore.Logic.Entities;
-
-
-///   N A M E S P A C E   ///
+﻿///   N A M E S P A C E   ///
 namespace MusicStore.Logic.DataContext;
 
 
@@ -9,8 +6,6 @@ public static class DataLoader
 {
 
         #region ___M E T H O D S___ 
-
-        /// LOAD FROM CSV:
 
         /// <summary>
         /// Loads genres from a CSV file.

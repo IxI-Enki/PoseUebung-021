@@ -1,8 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using MusicStore.Logic.Contracts;
-
-
-///   N A M E S P A C E   ///
+﻿///   N A M E S P A C E   ///
 namespace MusicStore.Logic.DataContext;
 
 
@@ -11,6 +7,7 @@ namespace MusicStore.Logic.DataContext;
 /// </summary>
 public sealed class MusicStoreContext : DbContext, IContext
 {
+
         #region ___F I E L D S___ 
 
         private static readonly string _path

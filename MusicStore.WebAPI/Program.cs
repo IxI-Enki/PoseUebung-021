@@ -1,4 +1,6 @@
+///   N A M E S P A C E   ///
 namespace MusicStore.WebAPI;
+
 
 public class Program
 {
@@ -6,11 +8,14 @@ public class Program
         {
                 var builder = WebApplication.CreateBuilder( args );
 
+
                 // Add services to the container.
 
-                builder.Services.AddControllers( );
+                builder.Services.AddControllers( )
+                                .AddNewtonsoftJson( );  // Add this to the controllers for PATCH-operation.
 
                 var app = builder.Build( );
+
 
                 // Configure the HTTP request pipeline.
 

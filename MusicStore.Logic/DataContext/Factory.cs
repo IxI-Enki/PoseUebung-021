@@ -1,18 +1,14 @@
-﻿using MusicStore.Logic.Contracts;
-
-
-///   N A M E S P A C E   ///
+﻿///   N A M E S P A C E   ///
 namespace MusicStore.Logic.DataContext;
 
-
-using Assembly = System.Reflection.Assembly;
 
 /// <summary>
 /// Factory class to create instances of IContext.
 /// </summary>
 public static class Factory
 {
-        #region ___F I E L D S___ 
+
+        #region ___F I E L D___ 
 
         private static readonly string _path
                 = Path.GetDirectoryName( Assembly.GetExecutingAssembly( ).Location )!.ToString( );
