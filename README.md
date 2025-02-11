@@ -1,6 +1,6 @@
 ###### <p align="center"> PoseUebung-021 </p>
 
-# Music Store with MSSQL Database & ASP.NET Web API ( generic Controller ) 
+# Music Store <sub>with MSSQL Database & ASP.NET Web API ( generic Controller )</sub> 
 
 >[!NOTE]
 > <div align="center">
