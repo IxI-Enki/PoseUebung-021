@@ -28,6 +28,7 @@ public class UserData
                 // Initialize to an empty string to prevent null reference exceptions
                 = string.Empty;
 
+
         /// <summary>
         /// Gets or sets the password for the user account.
         ///   <warning>

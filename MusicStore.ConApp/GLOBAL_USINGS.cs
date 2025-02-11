@@ -10,6 +10,7 @@ global using System.Threading.Tasks;
 global using System.Linq.Dynamic.Core;
 global using System.Collections.Generic;
 
+
 ///   E N T I T Y   F R A M E W O R K   ///
 global using Microsoft.EntityFrameworkCore;
 global using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
@@ -19,6 +20,14 @@ global using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 //   - Logic   
 global using MusicStore.Logic;
 global using MusicStore.Logic.Entities;
+//
+global using Genre = MusicStore.Logic.Entities.Genre;
+global using Album = MusicStore.Logic.Entities.Album;
+global using Track = MusicStore.Logic.Entities.Track;
+global using Artist = MusicStore.Logic.Entities.Artist;
+//
+global using Factory = MusicStore.Logic.DataContext.Factory;
+global using IContext = MusicStore.Logic.Contracts.IContext;
 
 
 ///   N A M E S P A C E   ///

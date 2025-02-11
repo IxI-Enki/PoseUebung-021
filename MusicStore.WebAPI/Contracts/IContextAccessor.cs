@@ -20,6 +20,9 @@ public interface IContextAccessor<TEntity>
         where TEntity : EntityObject, new()  // This constraint ensures that TEntity is or derives from EntityObject & can be instantiated without arguments.
                                              // This is useful for creating new instances of the entity when needed within the implementation of methods.
 {
+
+        #region ___M E T H O D S___ 
+
         /// <summary>
         /// Retrieves the database context.
         /// </summary>
@@ -46,4 +49,6 @@ public interface IContextAccessor<TEntity>
         /// This method allows for type-specific database operations by providing access to the entity collection within the context.
         /// </remarks>
         DbSet<TEntity>? GetDbSet( );
+
+        #endregion
 }

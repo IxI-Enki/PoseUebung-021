@@ -68,6 +68,7 @@ public static class Factory
                 context.Database.EnsureCreated( );
         }
 
+
         /// <summary>
         /// Initializes the database with data
         ///   by first recreating it and then seeding it with genres and artists from CSV files.
@@ -102,11 +103,10 @@ public static class Factory
 
                         context.SaveChanges( );
 
-                        ///    
+
                         ///    FURTHER LOADING   ///
                         ///    
                         /// TODO: Add any additional data seeding here
-                        ///    
 
                 }
                 catch

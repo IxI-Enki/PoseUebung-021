@@ -32,7 +32,6 @@ public sealed class MusicStoreContext : DbContext, IContext
         /// <returns>
         /// The path to the connection string file or a README if the connection string file is not found.
         /// </returns>
-
         private static string _connectionString( )
         {
                 string result = Path.Combine( _path , "Connections" );
@@ -74,8 +73,17 @@ public sealed class MusicStoreContext : DbContext, IContext
         /// </param>
         protected override void OnConfiguring( DbContextOptionsBuilder optionsBuilder )
         {
+                // Configures the DbContext to use SQL Server with the provided connection string.
+                //
+                // 'ConnectionString' should contain details like server name, database, authentication info.
                 optionsBuilder.UseSqlServer( ConnectionString );
 
+                // Calls the base DbContext's OnConfiguring method.
+                //
+                // This ensures that if any base class has overridden this method with additional configurations,
+                //   those are applied after ours.
+                //
+                // While the base implementation does nothing, this is good practice for extensibility.
                 base.OnConfiguring( optionsBuilder );
         }
 
@@ -89,26 +97,32 @@ public sealed class MusicStoreContext : DbContext, IContext
         /// </summary>
         public DbSet<Genre> GenreSet { get; set; }
 
+
         /// <summary>
         /// Gets or sets the collection of artists.
         /// </summary>
         public DbSet<Artist> ArtistSet { get; set; }
+
 
         /// <summary>
         /// Gets or sets the collection of albums.
         /// </summary>
         public DbSet<Album> AlbumSet { get; set; }
 
+
         /// <summary>
         /// Gets or sets the collection of tracks.
         /// </summary>
         public DbSet<Track> TrackSet { get; set; }
 
+
         /// <summary>
         /// Gets the connection string by reading from the file specified by <see cref="_connectionString"/>.
-        /// This property is internal, it's used within this assembly for database configuration.
+        /// This property is internal,
+        ///   it's used within this assembly for database configuration.
         /// </summary>
-        internal static string ConnectionString { get => File.ReadAllText( _connectionString( ) ); }
+        internal static string ConnectionString 
+                => File.ReadAllText( _connectionString( ) );
 
         #endregion
 
