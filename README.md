@@ -32,12 +32,16 @@
 
   - ### *System-Controller* : 
 
-<div align="center">
+    <div align="center">
+    
+      |    ***Testing with Postman***                               |
+      |:-----------------------------------------------------------:|
+      | <img src="img/login-postman.png" alt="postman" width=740px> | 
+    
+      |    *Valid* Login                                          |                      *Invalid* Login                      |
+      |:---------------------------------------------------------:|:---------------------------------------------------------:|
+      | <img src="img/l-valid.png" alt="valid" width=400px> | <img src="img/l-invalid.png" alt="invalid" width=400px> |
+    
+    </div>
 
-  |    *Valid* Login                                          |                      *Invalid* Login                      |
-  |:---------------------------------------------------------:|:---------------------------------------------------------:|
-  | <img src="img/login-valid.png" alt="valid" width=600px> | <img src="img/login-invalid.png" alt="invalid" width=600px> |
-
-</div>
-
----
+    ---
