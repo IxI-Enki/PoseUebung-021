@@ -1,92 +1,57 @@
 ﻿///   N A M E S P A C E   ///
 namespace MusicStore.WebAPI.Controllers;
 
-using TArtist = Models.ModelArtist;
-
 
 [Route( "api/[controller]" )]
 [ApiController]
-public class ArtistsController : ControllerBase
+public class ArtistsController : GenericController<TArtist , Artist>
 {
-        // GET: api/artists
-        [HttpGet]
-        public IEnumerable<TArtist> Get( )
-        {
-                using var context = Factory.CreateContext( );
 
-                return [ .. context.ArtistSet
-                                   .Take( GLOBAL_USINGS.MAX_COUNT )
-                                   .AsNoTracking( )
-                                   .Select( a => TArtist.Create( a ) )
-                       ];
+        #region ___O V E R R I D E S___ 
+
+        /// <summary>
+        /// Provides the database context for operations.
+        /// </summary>
+        ///
+        /// <returns>
+        /// An instance of <see cref="IContext"/>.
+        /// </returns>
+        protected override IContext GetContext( ) => Factory.CreateContext( );
+
+
+        /// <summary>
+        /// Retrieves the appropriate <see cref="DbSet{TEntity}"/> from the given context for the entity type.
+        /// </summary>
+        ///
+        /// <param name="context">T
+        /// he context from which to retrieve the DbSet.
+        /// </param>
+        ///
+        /// <returns>
+        /// A <see cref="DbSet{TEntity}"/> for the operations.
+        /// </returns>
+        protected override DbSet<Artist> GetDbSet( IContext context ) => context.ArtistSet;
+
+
+        /// <summary>
+        /// Converts an entity to its model representation.
+        /// </summary>
+        ///
+        /// <param name="entity">
+        /// The entity to convert.
+        /// </param>
+        ///
+        /// <returns>
+        /// A new instance of <typeparamref name="TModel"/> representing the entity.
+        /// </returns>
+        protected override TArtist ToModel( Artist entity )
+        {
+                var result = new TArtist( );
+
+                result.CopyProperties( entity );
+
+                return result;
         }
 
-        // GET api/artists/5
-        [HttpGet( "{id}" )]
-        public TArtist? Get( int id )
-        {
-                using var context = Factory.CreateContext( );
-
-                var result = context.ArtistSet
-                                    .FirstOrDefault( a => a.Id == id );
-
-                return result != null
-                                 ? TArtist.Create( result )
-                                 : null;
-        }
-
-        // POST api/artists
-        [HttpPost]
-        public void Post( [FromBody] TArtist artist )
-        {
-                using var context = Factory.CreateContext( );
-
-                var result = new Logic.Entities.Artist( );
-
-                if(artist != null)
-                {
-                        result.CopyProperties( artist );
-
-                        context.ArtistSet.Add( result );
-
-                        context.SaveChanges( );
-                }
-        }
-
-        // PUT api/artists/5
-        [HttpPut( "{id}" )]
-        public void Put( int id , [FromBody] TArtist artist )
-        {
-                using var context = Factory.CreateContext( );
-
-                var result = new Logic.Entities.Artist( );
-
-                if(artist != null)
-                {
-                        result.CopyProperties( artist );
-
-                        result.Id = id;
-
-                        context.ArtistSet.Add( result );
-
-                        context.SaveChanges( );
-                }
-        }
-
-        // DELETE api/artists/5
-        [HttpDelete( "{id}" )]
-        public void Delete( int id )
-        {
-                using var context = Factory.CreateContext( );
-
-                var result = context.ArtistSet
-                                    .FirstOrDefault( a => a.Id == id );
-
-                if(result != null)
-                {
-                        context.ArtistSet.Remove( result );
-
-                        context.SaveChanges( );
-                }
-        }
+        #endregion
 }
