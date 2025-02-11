@@ -20,35 +20,35 @@ public class GenresController : GenericController<TGenre , Genre>
 
 
         /// <summary>
-        /// Retrieves the appropriate <see cref="DbSet{TEntity}"/> from the given context for the entity type.
+        /// Retrieves the appropriate <see cref="DbSet{TGenre}"/> from the given context for the genre type.
         /// </summary>
         ///
-        /// <param name="context">T
-        /// he context from which to retrieve the DbSet.
+        /// <param name="context">
+        /// The context from which to retrieve the DbSet.
         /// </param>
         ///
         /// <returns>
-        /// A <see cref="DbSet{TEntity}"/> for the operations.
+        /// A <see cref="DbSet{TGenre}"/> for the operations.
         /// </returns>
         protected override DbSet<Genre> GetDbSet( IContext context ) => context.GenreSet;
 
 
         /// <summary>
-        /// Converts an entity to its model representation.
+        /// Converts an genre to its model representation.
         /// </summary>
         ///
-        /// <param name="entity">
-        /// The entity to convert.
+        /// <param name="genre">
+        /// The genre to convert.
         /// </param>
         ///
         /// <returns>
-        /// A new instance of <typeparamref name="TModel"/> representing the entity.
+        /// A new instance of <typeparamref name="TGenre"/> representing the genre.
         /// </returns>
-        protected override TGenre ToModel( Genre entity )
+        protected override TGenre ToModel( Genre genre )
         {
                 var result = new TGenre( );
 
-                result.CopyProperties( entity );
+                result.CopyProperties( genre );
 
                 return result;
         }

@@ -20,35 +20,35 @@ public class ArtistsController : GenericController<TArtist , Artist>
 
 
         /// <summary>
-        /// Retrieves the appropriate <see cref="DbSet{TEntity}"/> from the given context for the entity type.
+        /// Retrieves the appropriate <see cref="DbSet{Artist}"/> from the given context for the artist type.
         /// </summary>
         ///
-        /// <param name="context">T
-        /// he context from which to retrieve the DbSet.
+        /// <param name="context">
+        /// The context from which to retrieve the DbSet.
         /// </param>
         ///
         /// <returns>
-        /// A <see cref="DbSet{TEntity}"/> for the operations.
+        /// A <see cref="DbSet{Artist}"/> for the operations.
         /// </returns>
         protected override DbSet<Artist> GetDbSet( IContext context ) => context.ArtistSet;
 
 
         /// <summary>
-        /// Converts an entity to its model representation.
+        /// Converts an artist to its model representation.
         /// </summary>
         ///
-        /// <param name="entity">
-        /// The entity to convert.
+        /// <param name="artist">
+        /// The artist to convert.
         /// </param>
         ///
         /// <returns>
-        /// A new instance of <typeparamref name="TModel"/> representing the entity.
+        /// A new instance of <typeparamref name="TArtist"/> representing the artist.
         /// </returns>
-        protected override TArtist ToModel( Artist entity )
+        protected override TArtist ToModel( Artist artist )
         {
                 var result = new TArtist( );
 
-                result.CopyProperties( entity );
+                result.CopyProperties( artist );
 
                 return result;
         }
