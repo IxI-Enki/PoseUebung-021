@@ -2,9 +2,12 @@
 
 Music Store with MSSQL Database & ASP.NET Web API ( generic Controller ) 
 
-
-Please read [this document](https://github.com/IxI-Enki/PoseUebung-021/tree/master/MusicStore.Logic/Connections) if you fork this repository, to run the application.
-
+>[!NOTE]
+> <div align="center">
+>  
+>  Please read [this document](https://github.com/IxI-Enki/PoseUebung-021/tree/master/MusicStore.Logic/Connections) if you fork this repository.
+>
+> </div>
 
 <!--
 <div align="center">
