@@ -2,92 +2,56 @@
 namespace MusicStore.WebAPI.Controllers;
 
 
-using TGenre = Models.ModelGenre;
-
-
 [Route( "api/[controller]" )]
 [ApiController]
-public class GenresController : ControllerBase
+public class GenresController : GenericController<TGenre , Genre>
 {
-        // GET: api/genres
-        [HttpGet]
-        public IEnumerable<TGenre> Get( )
-        {
-                using var context = Factory.CreateContext( );
 
-                return [ .. context.GenreSet
-                                   .Take( GLOBAL_USINGS.MAX_COUNT )
-                                   .AsNoTracking( )
-                                   .Select( g => TGenre.Create( g ) )
-                       ];
+        #region ___O V E R R I D E S___ 
+
+        /// <summary>
+        /// Provides the database context for operations.
+        /// </summary>
+        ///
+        /// <returns>
+        /// An instance of <see cref="IContext"/>.
+        /// </returns>
+        protected override IContext GetContext( ) => Factory.CreateContext( );
+
+
+        /// <summary>
+        /// Retrieves the appropriate <see cref="DbSet{TEntity}"/> from the given context for the entity type.
+        /// </summary>
+        ///
+        /// <param name="context">T
+        /// he context from which to retrieve the DbSet.
+        /// </param>
+        ///
+        /// <returns>
+        /// A <see cref="DbSet{TEntity}"/> for the operations.
+        /// </returns>
+        protected override DbSet<Genre> GetDbSet( IContext context ) => context.GenreSet;
+
+
+        /// <summary>
+        /// Converts an entity to its model representation.
+        /// </summary>
+        ///
+        /// <param name="entity">
+        /// The entity to convert.
+        /// </param>
+        ///
+        /// <returns>
+        /// A new instance of <typeparamref name="TModel"/> representing the entity.
+        /// </returns>
+        protected override TGenre ToModel( Genre entity )
+        {
+                var result = new TGenre( );
+
+                result.CopyProperties( entity );
+
+                return result;
         }
 
-        // GET api/genres/5
-        [HttpGet( "{id}" )]
-        public TGenre? Get( int id )
-        {
-                using var context = Factory.CreateContext( );
-
-                var result = context.GenreSet
-                                    .FirstOrDefault( g => g.Id == id );
-
-                return result != null
-                                 ? TGenre.Create( result )
-                                 : null;
-        }
-
-        // POST api/genres
-        [HttpPost]
-        public void Post( [FromBody] TGenre genre )
-        {
-                using var context = Factory.CreateContext( );
-
-                var result = new Logic.Entities.Genre( );
-
-                if(genre != null)
-                {
-                        result.CopyProperties( genre );
-
-                        context.GenreSet.Add( result );
-
-                        context.SaveChanges( );
-                }
-        }
-
-        // PUT api/genres/5
-        [HttpPut( "{id}" )]
-        public void Put( int id , [FromBody] TGenre genre )
-        {
-                using var context = Factory.CreateContext( );
-
-                var result = new Logic.Entities.Genre( );
-
-                if(genre != null)
-                {
-                        result.CopyProperties( genre );
-                        
-                        result.Id = id;
-
-                        context.GenreSet.Add( result );
-
-                        context.SaveChanges( );
-                }
-        }
-
-        // DELETE api/genres/5
-        [HttpDelete( "{id}" )]
-        public void Delete( int id )
-        {
-                using var context = Factory.CreateContext( );
-
-                var result = context.GenreSet
-                                    .FirstOrDefault( g => g.Id == id );
-
-                if(result != null)
-                {
-                        context.GenreSet.Remove( result );
-
-                        context.SaveChanges( );
-                }
-        }
+        #endregion
 }
