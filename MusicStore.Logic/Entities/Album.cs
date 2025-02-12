@@ -104,7 +104,7 @@ public sealed class Album : EntityObject, IAlbum
         {
                 var result = new StringBuilder( )
 
-                         .AppendLine( GLOBAL_USINGS.Seperator_Bold( ) )
+                         .AppendLine( GLOBAL_USINGS.Seperator_Bold( ).ForegroundColor( "110,110,110" ) )
 
                          .AppendLine( $"    Album-Title  : {(Title.Length >= Console.WindowWidth - 23
 
@@ -116,7 +116,7 @@ public sealed class Album : EntityObject, IAlbum
                                 ? string.Concat( Artist.Name.AsSpan( 0 , Console.WindowWidth - 23 ) , " ..." ) : Artist?.Name)}" )
 
 
-                         .AppendLine( GLOBAL_USINGS.Seperator_Line( ) );
+                         .AppendLine( GLOBAL_USINGS.Seperator_Line( ).ForegroundColor( "30,30,30" ) );
 
                 int i = 1;
 
@@ -133,7 +133,7 @@ public sealed class Album : EntityObject, IAlbum
 
                                      $"{(t.Title.Length >= (Console.WindowWidth - 13) ? " ..." : "")}" )}" ) )
 
-                        ).AppendLine( GLOBAL_USINGS.Seperator_Bold( ) );
+                        ).AppendLine( GLOBAL_USINGS.Seperator_Bold( ).ForegroundColor( "110,110,110" ) + "\n" );
 
                 return result.ToString( );
         }

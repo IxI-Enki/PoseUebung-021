@@ -142,8 +142,8 @@ internal class Program
         {
                 int index = 1;
                 Console.Clear( );
-                Console.Write( $"\n{new string( ' ' , (Console.WindowWidth / 2 - 5) )}MusicStore" );
-                Console.Write( $"\n{new string( '═' , Console.WindowWidth )}\n\n" );
+                Console.Write( $"\n{new string( ' ' , (Console.WindowWidth / 2 - 5) )}MusicStore".ForegroundColor( "40,122,77" ) );
+                Console.Write( $"\n{new string( '═' , Console.WindowWidth ).ForegroundColor( "40,122,77" )}\n\n" );
 #if DEBUG
                 index = 0;
                 Console.Write( $"  {nameof( ResetDatabaseFromCSV ),-25}.... {index++}\n" );
@@ -567,7 +567,7 @@ internal class Program
 
                 static void Print( EntityObject a ) => Console.Write
                            (
-                                string.Concat( "\n" ,
+                                string.Concat( 
 #if DEBUG                  
                                 "  " , $"[id:{a.Id,4}]".BackgroundColor( "80,80,80" ) , $"{" ",5}{(a is Album al
 

@@ -142,7 +142,7 @@ public sealed class Track : EntityObject, ITrack
         {
                 var result = new StringBuilder( )
 
-                         .AppendLine( GLOBAL_USINGS.Seperator_Bold( ) )
+                         .AppendLine( GLOBAL_USINGS.Seperator_Bold( ).ForegroundColor( "110,110,110" ) )
 
                          .AppendLine( $"    Track-Title : {(Title.Length >= Console.WindowWidth - 22
 
@@ -154,7 +154,7 @@ public sealed class Track : EntityObject, ITrack
                                 ? string.Concat( Album.Title.AsSpan( 0 , Console.WindowWidth - 22 ) , "..." ) : Album?.Title)}" )
 
 
-                         .AppendLine( GLOBAL_USINGS.Seperator_Line( ) )
+                         .AppendLine( GLOBAL_USINGS.Seperator_Line( ).ForegroundColor( "30,30,30" ) )
 
                          // Include genre name if available, otherwise mark as "Unknown"
                          .AppendLine( $"    Genre       : {Genre?.Name ?? "\u001b[38;2;190;40;60mUnknown\u001b[0m"}" )
@@ -164,7 +164,7 @@ public sealed class Track : EntityObject, ITrack
                                 ? ("\u001b[38;2;190;40;60mComposer    : Unknown\u001b[0m") : ($"Composer    : {Composer}"))}" )
 
 
-                         .AppendLine( GLOBAL_USINGS.Seperator_Dotted( ) )
+                         .AppendLine( GLOBAL_USINGS.Seperator_Dotted( ).ForegroundColor( "30,30,30" ) )
 
                          // Convert milliseconds to seconds for human readability
                          .AppendLine( $"    Duration    : {TimeSpan.FromMilliseconds( Milliseconds ).Humanize( 2 )}" )
@@ -173,7 +173,7 @@ public sealed class Track : EntityObject, ITrack
 
                          .AppendLine( $"    Bytes       : {Bytes}" )
 
-                         .AppendLine( GLOBAL_USINGS.Seperator_Bold( ) );
+                         .AppendLine( GLOBAL_USINGS.Seperator_Bold( ).ForegroundColor( "110,110,110" ) + "\n" );
 
                 return result.ToString( );
         }

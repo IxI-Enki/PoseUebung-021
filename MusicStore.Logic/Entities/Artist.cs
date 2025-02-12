@@ -87,7 +87,7 @@ public sealed class Artist : EntityObject, IArtist
         public override string ToString( )
 
                 => new StringBuilder( )
-                        .Append( $"    {Name}" )
+                        .Append( $"{Name}" )
                         .ToString( );
 
         #endregion
