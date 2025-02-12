@@ -85,10 +85,9 @@ public sealed class Album : EntityObject, IAlbum
                 // Copy the album-specific properties
                 Title = other.Title;
 
-                // Deep copy for Artist if it exists, using null-coalescing assignment
-                Artist ??= new Artist( );
-                // Copy is only called if the object exists, preventing null reference exceptions.
-                Artist?.CopyProperties( other.Artist! );
+ 
+                Artist.CopyProperties( other.Artist! );
+ 
         }
 
         #endregion

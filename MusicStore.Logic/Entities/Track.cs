@@ -1,4 +1,6 @@
-﻿///   N A M E S P A C E   ///
+﻿using System.Transactions;
+
+///   N A M E S P A C E   ///
 namespace MusicStore.Logic.Entities;
 
 
@@ -111,10 +113,10 @@ public sealed class Track : EntityObject, ITrack
 
                 // Assign other.Title to Title if Title is null.
                 // If both Title and other.Title are null, it will assign string.Empty.
-                Title ??= other.Title ?? string.Empty;
+                Title = other.Title;
                 // Assign other.Composer to Composer if Composer is null.
                 // If both Composer and other.Composer are null, it will assign string.Empty.
-                Composer ??= other.Composer ?? string.Empty;
+                Composer = other.Composer;
 
                 Bytes = other.Bytes;
                 AlbumId = other.AlbumId;
@@ -122,15 +124,22 @@ public sealed class Track : EntityObject, ITrack
                 UnitPrice = other.UnitPrice;
                 Milliseconds = other.Milliseconds;
 
+                Album = other.Album;
+                //Genre = other.Genre;
+
                 // Deep copy for Album if it exists, using null-coalescing assignment
-                Album ??= new Album( );
+                //Album ??= new Album( );
                 // Copy is only called if the object exists, preventing null reference exceptions.
-                Album?.CopyProperties( other.Album! );
+                //Album.CopyProperties( other.Album! );
+
+
+                /*
 
                 // Deep copy for Genre if it exists, using null-coalescing assignment
-                Genre ??= new Genre( );
                 // Copy is only called if the object exists, preventing null reference exceptions.
-                Genre?.CopyProperties( other.Genre! );
+                */
+                //Genre ??= new Genre( );
+                //Genre.CopyProperties( other.Genre! );
         }
 
         #endregion

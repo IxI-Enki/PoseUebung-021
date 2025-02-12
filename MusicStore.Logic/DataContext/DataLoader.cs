@@ -17,12 +17,12 @@ public static class DataLoader
         #region ___M E T H O D S___ 
 
         /// <summary>
-        /// Loads genre data from a CSV file into a list of <see cref="Entities.Genre"/> objects.
+        /// Loads album data from a CSV file into a list of <see cref="Entities.Genre"/> objects.
         /// </summary>
         ///
         /// <param name="path">
-        /// The file path of the CSV containing genre data.
-        /// Each user after the header should have at least two fields where the second field is the genre name.
+        /// The file path of the CSV containing album data.
+        /// Each user after the header should have at least two fields where the second field is the album name.
         /// </param>
         ///
         /// <returns>
@@ -46,9 +46,9 @@ public static class DataLoader
                         .Select( line => line.Split( ';' ) )  // Split each user by ';'
                         .Select( genre => new Genre
                         {
-                                Name = genre[ 1 ]  // Genre name is in the second column (index 1)
+                                //Id = Convert.ToInt32( genre[ 0 ] ) ,
+                                Name = genre[ 1 ]             // Genre name is in the second column (index 1)
                         } ) );
-
                 return result;
         }
 
@@ -83,28 +83,64 @@ public static class DataLoader
                         .Select( line => line.Split( ';' ) )  // Split each user by ';'
                         .Select( artist => new Artist
                         {
-                                Name = artist[ 1 ]  // Artist name is in the second column (index 1)
+                                //Id = Convert.ToInt32( artist[ 0 ] ) ,
+                                Name = artist[ 1 ]            // Artist name is in the second column (index 1)
                         } ) );
-
                 return result;
         }
 
 
-        #region ___ T O   D O ___ 
-        // ALBUMS
         /// <summary>
         /// Loads albums from a CSV file.
         /// </summary>
         /// <param name="path">The path to the CSV file.</param>
         /// <returns>A list of albums.</returns>
-        // TRACKS
+        internal static List<Album> LoadAlbumsFromCSV( string path )
+        {
+                var result = new List<Album>( );
+
+                // Read all albums from the file, skipping the header row
+                result.AddRange(
+                        File.ReadAllLines( path )
+                        .Skip( 1 )                                        // Skip header
+                        .Select( line => line.Split( ';' ) )              // Split each album by ';'
+                        .Select( album => new Album
+                        {
+                                //Id = Convert.ToInt32( album[ 0 ] ) ,
+                                Title = album[ 1 ] ,                      // Album titls is in the second column (index 1)
+                                ArtistId = Convert.ToInt32( album[ 2 ] )  // Artist ID is in the third column (index 2)
+                        } ) );
+                return result;
+        }
+
+
         /// <summary>
         /// Loads tracks from a CSV file.
         /// </summary>
         /// <param name="path">The path to the CSV file.</param>
         /// <returns>A list of tracks.</returns>
-        #endregion
+        internal static List<Track> LoadTracksFromCSV( string path )
+        {
+                var result = new List<Track>( );
 
+                // Read all tracks from the file, skipping the header row
+                result.AddRange(
+                        File.ReadAllLines( path )
+                        .Skip( 1 )                                              // Skip header
+                        .Select( line => line.Split( ';' ) )                    // Split each track by ';'
+                        .Select( track => new Track
+                        {
+                                //Id = Convert.ToInt32( track[ 0 ] ) ,
+                                Title = track[ 1 ] ,                            // Track titla is in the second column (index 1)
+                                //AlbumId = Convert.ToInt32( track[ 2 ] ) ,       // Album ID is in the third column (index 2)
+                                GenreId = Convert.ToInt32( track[ 3 ] ) ,       // Genre ID is in the fourth column (index 3)
+                                Composer = track[ 4 ] ,                         // Composer is in the fifth column (index 4)
+                                Milliseconds = Convert.ToInt64( track[ 5 ] ) ,  // Milliseconds is in the sixth column (index 5)
+                                Bytes = Convert.ToInt64( track[ 6 ] ) ,         // Bytes is in the seventh column (index 6)
+                                UnitPrice = Convert.ToDouble( track[ 7 ] )      // Unit price is in the eighth column (index 7)
+                        } ) );
+                return result;
+        }
         #endregion
 
 
@@ -121,8 +157,7 @@ public static class DataLoader
 
                 #region ___C O N S T R U C T O R___ 
 
-                private CredentialLoader( )
-                        => _path = Path.GetDirectoryName( Assembly.GetExecutingAssembly( ).Location )!;
+                private CredentialLoader( ) => _path = Path.GetDirectoryName( Assembly.GetExecutingAssembly( ).Location )!;
 
                 #endregion
 

@@ -103,11 +103,20 @@ public static class Factory
 
                         context.SaveChanges( );
 
+                        // Load albums from CSV and add to the context
+                        var albums = DataLoader.LoadAlbumsFromCSV( Path.Combine( _path , "Data" , "albums.csv" ) );
 
-                        ///    FURTHER LOADING   ///
-                        ///    
-                        /// TODO: Add any additional data seeding here
+                        albums.ToList( ).ForEach( album => context.AlbumSet.Add( album ) );
 
+                        context.SaveChanges( );
+
+                        // Load tracks from CSV and add to the context
+
+                        var tracks = DataLoader.LoadTracksFromCSV( Path.Combine( _path , "Data" , "tracks.csv" ) );
+                        
+                        tracks.ToList( ).ForEach( track => context.TrackSet.Add( track ) );
+                        
+                        context.SaveChanges( );
                 }
                 catch
                 {

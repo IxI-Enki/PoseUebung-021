@@ -1,41 +1,49 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
         <PropertyGroup>
-                <TargetFramework>net8.0</TargetFramework>
-                <ImplicitUsings>enable</ImplicitUsings>
                 <Nullable>enable</Nullable>
+                <ImplicitUsings>enable</ImplicitUsings>
+                <TargetFramework>net8.0</TargetFramework>
         </PropertyGroup>
 
         <ItemGroup>
                 <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.1" />
-                <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.1" />
                 <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.1" />
+                <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.1" />
                 <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.1" />
 
         </ItemGroup>
 
         <ItemGroup>
-                <None Update="Connections\credentials.csv">
-                  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-                </None>
-                <None Update="Connections\mssql.txt">
-                        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-                </None>
+                
                 <None Update="Connections\README.md">
                   <CopyToOutputDirectory>Always</CopyToOutputDirectory>
                 </None>
+                
                 <None Update="Data\Albums.csv">
                         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
                 </None>
+                
                 <None Update="Data\Artists.csv">
                         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
                 </None>
+                
                 <None Update="Data\Genres.csv">
                         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
                 </None>
+                
                 <None Update="Data\Tracks.csv">
                         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
                 </None>
+
+                <None Update="Connections\credentials.csv">
+                  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+                </None>
+                
+                <None Update="Connections\mssql.txt">
+                        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+                </None>
+                
         </ItemGroup>
 
 </Project>

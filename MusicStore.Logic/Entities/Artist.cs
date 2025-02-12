@@ -70,6 +70,8 @@ public sealed class Artist : EntityObject, IArtist
 
                 // Copy the artist-specific property
                 Name = other.Name;
+
+                
         }
 
         #endregion

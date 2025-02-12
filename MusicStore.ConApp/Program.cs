@@ -90,7 +90,7 @@ internal class Program
                                         break;
 
                                 ///   A L B U M S   O U T P U T   
-                                /*
+
 
                                 case 9:
                                         PrintAlbums( context );
@@ -109,11 +109,8 @@ internal class Program
                                         DeleteAlbum( context );
                                         break;
 
-                                 */
 
                                 ///   T R A C K S   O U T P U T   
-                                /*
-
                                 case 13:
                                         PrintTracks( context );
                                         Console.Write( "\n  Continue with Enter..." );
@@ -130,8 +127,6 @@ internal class Program
                                 case 16:
                                         DeleteTrack( context );
                                         break;
-
-                                */
 
                                 default:
                                         break;
@@ -166,17 +161,17 @@ internal class Program
                 Console.Write( $"  {nameof( AddArtist/*        */),-25}.... {index++}\n" );
                 Console.Write( $"  {nameof( DeleteArtist/*     */),-25}.... {index++}\n" );
 
-                /*
-                // Console.WriteLine($"{nameof(PrintAlbums),-25}....{index++}");
-                // Console.WriteLine($"{nameof(QueryAlbums),-25}....{index++}");
-                // Console.WriteLine($"{nameof(AddAlbum),-25}....{index++}");
-                // Console.WriteLine($"{nameof(DeleteAlbum),-25}....{index++}");
-                // 
-                // Console.WriteLine($"{nameof(PrintTracks),-25}....{index++}");
-                // Console.WriteLine($"{nameof(QueryTracks),-25}....{index++}");
-                // Console.WriteLine($"{nameof(AddTrack),-25}....{index++}");
-                // Console.WriteLine($"{nameof(DeleteTrack),-25}....{index++}");
-                */
+                Console.WriteLine( $"{nameof( PrintAlbums ),-25}....{index++}" );
+                Console.WriteLine( $"{nameof( QueryAlbums ),-25}....{index++}" );
+                Console.WriteLine( $"{nameof( AddAlbum ),-25}....{index++}" );
+                Console.WriteLine( $"{nameof( DeleteAlbum ),-25}....{index++}" );
+
+
+                Console.WriteLine( $"{nameof( PrintTracks ),-25}....{index++}" );
+                Console.WriteLine( $"{nameof( QueryTracks ),-25}....{index++}" );
+                Console.WriteLine( $"{nameof( AddTrack ),-25}....{index++}" );
+                Console.WriteLine( $"{nameof( DeleteTrack ),-25}....{index++}" );
+
 
                 Console.Write( $"  {new string( '─' , 31 ),-25}\n" );
                 Console.Write( $"  {"Exit",-25}.... x\n" );

@@ -13,6 +13,17 @@ namespace MusicStore.Logic.DataContext;
 /// </remarks>
 public sealed class MusicStoreContext : DbContext, IContext
 {
+        protected override void OnModelCreating( ModelBuilder modelBuilder )
+        {
+                base.OnModelCreating( modelBuilder );
+
+                modelBuilder.Entity<Album>( )
+                    .HasMany( a => a.Tracks )
+                    .WithOne( t => t.Album )
+                    .HasForeignKey( t => t.AlbumId );
+ 
+                // Configure other entities and relationships here as needed
+        }
 
         #region ___F I E L D S___ 
 
@@ -76,7 +87,7 @@ public sealed class MusicStoreContext : DbContext, IContext
                 // Configures the DbContext to use SQL Server with the provided connection string.
                 //
                 // 'ConnectionString' should contain details like server name, database, authentication info.
-                optionsBuilder.UseSqlServer( ConnectionString ).EnableDetailedErrors( );
+                optionsBuilder.UseSqlServer( ConnectionString );
 
                 // Calls the base DbContext's OnConfiguring method.
                 //
