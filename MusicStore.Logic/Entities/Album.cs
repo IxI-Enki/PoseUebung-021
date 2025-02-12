@@ -101,16 +101,41 @@ public sealed class Album : EntityObject, IAlbum
         /// A formatted string describing the album.
         /// </returns>
         public override string ToString( )
+        {
+                var result = new StringBuilder( )
 
-                => new StringBuilder( )
-                        .AppendLine( "" )
-                        .AppendLine( $"\nAlbum-Titel  : {Title}" )
-                        // Include the artist's name if available, otherwise use "Unknown"
-                        .AppendLine(   $"Album-Artist : {Artist?.Name ?? "Unknown"}" )
-                        .AppendLine( "------------------------" )
-                        // Append each track title on a new line
-                        .AppendLine( string.Join( Environment.NewLine , Tracks.Select( t => t.Title ) ) )
-                        .ToString( );
+                         .AppendLine( GLOBAL_USINGS.Seperator_Bold( ) )
 
+                         .AppendLine( $"    Album-Title  : {(Title.Length >= Console.WindowWidth - 23
+
+                                ? string.Concat( Title.AsSpan( 0 , Console.WindowWidth - 23 ) , " ..." ) : Title)}" )
+
+
+                         .AppendLine( $"    Album-Artist : {(Artist?.Name.Length >= Console.WindowWidth - 23
+
+                                ? string.Concat( Artist.Name.AsSpan( 0 , Console.WindowWidth - 23 ) , " ..." ) : Artist?.Name)}" )
+
+
+                         .AppendLine( GLOBAL_USINGS.Seperator_Line( ) );
+
+                int i = 1;
+
+                if(Tracks.Select( t => t.Title ).Any( ))
+
+                        result.AppendLine( string.Join(
+
+                                     Environment.NewLine , Tracks.Select( t => $"{string.Concat( $"{i++,6}" , " : " ,
+
+                                     t.Title.AsSpan( 0 , ((t.Title.Length > Console.WindowWidth - 13)
+
+                                     ? (Console.WindowWidth - 13) : (t.Title.Length - 1)) ) ,
+
+
+                                     $"{(t.Title.Length >= (Console.WindowWidth - 13) ? " ..." : "")}" )}" ) )
+
+                        ).AppendLine( GLOBAL_USINGS.Seperator_Bold( ) );
+
+                return result.ToString( );
+        }
         #endregion
 }

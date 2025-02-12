@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using Humanizer;
+using System.Diagnostics.CodeAnalysis;
 using System.Transactions;
 
 ///   N A M E S P A C E   ///
@@ -138,20 +139,44 @@ public sealed class Track : EntityObject, ITrack
         /// A formatted string describing the track.
         /// </returns>
         public override string ToString( )
+        {
+                var result = new StringBuilder( )
 
-                => new StringBuilder( )
-                        .AppendLine( $"Track-Titel : {Title}" )
-                        .AppendLine( "---------------------" )
-                        // Include album title if available, otherwise mark as "Unknown"
-                        .AppendLine( $"Album-Title : {Album?.Title ?? "Unknown"}" )
-                        // Include genre name if available, otherwise mark as "Unknown"
-                        .AppendLine( $"Genre       : {Genre?.Name ?? "Unknown"}" )
-                        .AppendLine( $"Composer    : {Composer}" )
-                        // Convert milliseconds to seconds for human readability
-                        .AppendLine( $"Duration    : {Milliseconds / 1000} [sec]" )
-                        .AppendLine( $"Unit-Price  : {UnitPrice} [€]" )
-                        .AppendLine( $"Bytes       : {Bytes}" )
-                        .ToString( );
+                         .AppendLine( GLOBAL_USINGS.Seperator_Bold( ) )
+
+                         .AppendLine( $"    Track-Title : {(Title.Length >= Console.WindowWidth - 22
+
+                                ? string.Concat( Title.AsSpan( 0 , Console.WindowWidth - 22 ) , "..." ) : Title)}" )
+
+
+                         .AppendLine( $"    Album-Title : {(Album?.Title.Length >= Console.WindowWidth - 22
+
+                                ? string.Concat( Album.Title.AsSpan( 0 , Console.WindowWidth - 22 ) , "..." ) : Album?.Title)}" )
+
+
+                         .AppendLine( GLOBAL_USINGS.Seperator_Line( ) )
+
+                         // Include genre name if available, otherwise mark as "Unknown"
+                         .AppendLine( $"    Genre       : {Genre?.Name ?? "\u001b[38;2;190;40;60mUnknown\u001b[0m"}" )
+
+                         .AppendLine( $"    {((Composer == "<NULL>")
+
+                                ? ("\u001b[38;2;190;40;60mComposer    : Unknown\u001b[0m") : ($"Composer    : {Composer}"))}" )
+
+
+                         .AppendLine( GLOBAL_USINGS.Seperator_Dotted( ) )
+
+                         // Convert milliseconds to seconds for human readability
+                         .AppendLine( $"    Duration    : {TimeSpan.FromMilliseconds( Milliseconds ).Humanize( 2 )}" )
+
+                         .AppendLine( $"    Unit-Price  : {UnitPrice} [€]" )
+
+                         .AppendLine( $"    Bytes       : {Bytes}" )
+
+                         .AppendLine( GLOBAL_USINGS.Seperator_Bold( ) );
+
+                return result.ToString( );
+        }
 
         #endregion
 }

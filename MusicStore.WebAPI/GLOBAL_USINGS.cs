@@ -38,8 +38,6 @@ global using CredLoader = MusicStore.Logic.DataContext.DataLoader.CredentialLoad
 
 //   - WebAPI   
 global using TGenre = MusicStore.WebAPI.Models.ModelGenre;
-global using TAlbum = MusicStore.WebAPI.Models.ModelAlbum;
-global using TTrack = MusicStore.WebAPI.Models.ModelTrack;
 global using TArtist = MusicStore.WebAPI.Models.ModelArtist;
 //
 global using MusicStore.WebAPI;

@@ -31,8 +31,20 @@ global using Album = MusicStore.Logic.Entities.Album;
 global using Genre = MusicStore.Logic.Entities.Genre;
 global using Artist = MusicStore.Logic.Entities.Artist;
 
+///   E X T E N S I O N S   ///
+global using MusicStore.Logic.Extensions;
+
 
 ///   N A M E S P A C E   ///
 namespace MusicStore.Logic;
 
-public static class GLOBAL_USINGS { }
+public static class GLOBAL_USINGS
+{
+
+        public static string Seperator_Line( ) => new( '─' , Console.WindowWidth );
+        public static string Seperator_Dotted( ) => new( '┄' , Console.WindowWidth );
+        public static string Seperator_Strokes( ) => new( '╌' , Console.WindowWidth );
+        public static string Seperator_Double( ) => new( '═' , Console.WindowWidth );
+        public static string Seperator_Bold( ) => new( '━' , Console.WindowWidth );
+
+}
