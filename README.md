@@ -65,4 +65,39 @@
       </div>
 
          ---
-  
+
+    - #### *POST* :
+    
+      <div align="center">
+      
+      </div>
+
+         ---
+
+    - #### *PUT* :
+    
+      <div align="center">
+      
+      </div>
+
+         ---
+
+    - #### *PATCH* :
+    
+      <div align="center">
+      
+      </div>
+
+         ---
+
+    - #### *DELETE* :
+    
+      <div align="center">
+      
+      </div>
+
+         ---
+ 
+     
+     
+     
