@@ -2,7 +2,8 @@
 
 <div align="right"> 
   
-  ![GitHub repo size](https://img.shields.io/github/repo-size/IxI-Enki/PoseUebung-021)
+  ![GitHub repo size](https://img.shields.io/github/repo-size/IxI-Enki/PoseUebung-021?style=flat-square) 
+  ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/IxI-Enki/PoseUebung-021?style=flat-square)
 
 </div>
 
