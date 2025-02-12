@@ -96,9 +96,8 @@
       
       </div>
 
-    ---
+---
  
-
   - ### *Artist-Controller* : 
 
     - #### *GET* :
