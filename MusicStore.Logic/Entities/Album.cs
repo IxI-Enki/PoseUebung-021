@@ -85,9 +85,7 @@ public sealed class Album : EntityObject, IAlbum
                 // Copy the album-specific properties
                 Title = other.Title;
 
- 
-                Artist.CopyProperties( other.Artist! );
- 
+                Artist?.CopyProperties( other.Artist! );
         }
 
         #endregion
@@ -105,9 +103,10 @@ public sealed class Album : EntityObject, IAlbum
         public override string ToString( )
 
                 => new StringBuilder( )
-                        .AppendLine( $"Album-Titel  : {Title}" )
+                        .AppendLine( "" )
+                        .AppendLine( $"\nAlbum-Titel  : {Title}" )
                         // Include the artist's name if available, otherwise use "Unknown"
-                        .AppendLine( $"Album-Artist : {Artist?.Name ?? "Unknown"}" )
+                        .AppendLine(   $"Album-Artist : {Artist?.Name ?? "Unknown"}" )
                         .AppendLine( "------------------------" )
                         // Append each track title on a new line
                         .AppendLine( string.Join( Environment.NewLine , Tracks.Select( t => t.Title ) ) )

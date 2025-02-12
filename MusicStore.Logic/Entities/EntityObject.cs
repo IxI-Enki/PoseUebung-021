@@ -1,6 +1,7 @@
 ﻿///   N A M E S P A C E   ///
 namespace MusicStore.Logic.Entities;
 
+
 /// <summary>
 /// Represents an abstract base class for all entity objects in the system, ensuring they have a unique identifier.
 /// </summary>

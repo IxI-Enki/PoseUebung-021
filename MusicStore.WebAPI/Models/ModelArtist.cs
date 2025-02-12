@@ -1,6 +1,7 @@
 ﻿///   N A M E S P A C E   ///
 namespace MusicStore.WebAPI.Models;
 
+
 public class ModelArtist : ModelObject, IArtist
 {
         public string Name { get; set; } = string.Empty;

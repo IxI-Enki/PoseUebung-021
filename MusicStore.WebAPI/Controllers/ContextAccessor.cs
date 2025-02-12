@@ -25,9 +25,8 @@ namespace MusicStore.WebAPI.Controllers;
 /// It's designed for scenarios where you need to interact with the database in a controlled manner,
 ///   allowing for type-specific operations.
 /// </remarks>
-public sealed class ContextAccessor<TModel, TEntity>
-
-        : IDisposable,            // This interface allows the class to implement a 'Dispose' method for proper resource cleanup.
+public sealed class ContextAccessor<TModel, TEntity> :
+        IDisposable,              // This interface allows the class to implement a 'Dispose' method for proper resource cleanup.
         IContextAccessor<TEntity> // This interface defines the methods GetContext and GetDbSet to provide a consistent way to access context-related operations for entities of type TEntity.
 
         where TModel : ModelObject, new()   // This constraint specifies that TModel must be or inherit from ModelObject and should have a parameterless constructor.This allows for creating new instances of TModel when needed.
@@ -58,10 +57,10 @@ public sealed class ContextAccessor<TModel, TEntity>
         public void Dispose( )
         {
                 // Dispose the context if it's not null
-                _context?.Dispose( );  
+                _context?.Dispose( );
 
                 // Reset the context to null to ensure it's not used again
-                _context = null;       
+                _context = null;
         }
 
 
@@ -99,7 +98,7 @@ public sealed class ContextAccessor<TModel, TEntity>
         public DbSet<TEntity>? GetDbSet( )
         {
                 // Initialize result as null by default
-                DbSet<TEntity>? result = default;  
+                DbSet<TEntity>? result = default;
 
                 // Check the type of TEntity and return the corresponding DbSet
                 if(typeof( TEntity ) == typeof( Genre ))
@@ -124,7 +123,7 @@ public sealed class ContextAccessor<TModel, TEntity>
                 }
 
                 // Return the found DbSet or null
-                return result;  
+                return result;
         }
 
         #endregion

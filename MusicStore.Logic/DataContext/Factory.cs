@@ -12,7 +12,8 @@ namespace MusicStore.Logic.DataContext;
 ///   and provides methods for database initialization,
 ///   which are particularly useful during development or for setting up new environments.
 ///
-/// The use of conditional compilation (#if DEBUG) ensures that database operations like creation and seeding are only available in debug builds.
+/// The use of conditional compilation (#if DEBUG) ensures that database operations like creation
+///   and seeding are only available in debug builds.
 /// </remarks>
 public static class Factory
 {

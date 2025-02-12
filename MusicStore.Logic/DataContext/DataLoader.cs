@@ -41,14 +41,13 @@ public static class DataLoader
 
                 // Read all user from the file, skipping the header row
                 result.AddRange(
-                        File.ReadAllLines( path )
-                        .Skip( 1 )                            // Skip header
-                        .Select( line => line.Split( ';' ) )  // Split each user by ';'
-                        .Select( genre => new Genre
-                        {
-                               //Id = Convert.ToInt32( genre[ 0 ] ) ,
-                                Name = genre[ 1 ]             // Genre name is in the second column (index 1)
-                        } ) );
+                                File.ReadAllLines( path )
+                                    .Skip( 1 )                            // Skip header
+                                    .Select( line => line.Split( ';' ) )  // Split each user by ';'
+                                    .Select( genre => new Genre
+                                    {
+                                            Name = genre[ 1 ]             // Genre name is in the second column (index 1)
+                                    } ) );
                 return result;
         }
 
@@ -78,14 +77,13 @@ public static class DataLoader
 
                 // Read all user from the file, skipping the header row
                 result.AddRange(
-                        File.ReadAllLines( path )
-                        .Skip( 1 )                            // Skip header
-                        .Select( line => line.Split( ';' ) )  // Split each user by ';'
-                        .Select( artist => new Artist
-                        {
-                                 //Id = Convert.ToInt32( artist[ 0 ] ) ,
-                                Name = artist[ 1 ]            // Artist name is in the second column (index 1)
-                        } ) );
+                                File.ReadAllLines( path )
+                                    .Skip( 1 )                            // Skip header
+                                    .Select( line => line.Split( ';' ) )  // Split each user by ';'
+                                    .Select( artist => new Artist
+                                    {
+                                            Name = artist[ 1 ]            // Artist name is in the second column (index 1)
+                                    } ) );
                 return result;
         }
 
@@ -101,15 +99,14 @@ public static class DataLoader
 
                 // Read all albums from the file, skipping the header row
                 result.AddRange(
-                        File.ReadAllLines( path )
-                        .Skip( 1 )                                        // Skip header
-                        .Select( line => line.Split( ';' ) )              // Split each album by ';'
-                        .Select( album => new Album
-                        {
-                               //Id = Convert.ToInt32( album[ 0 ] ) ,
-                                Title = album[ 1 ] ,                      // Album titls is in the second column (index 1)
-                                ArtistId = Convert.ToInt32( album[ 2 ] )  // Artist ID is in the third column (index 2)
-                        } ) );
+                                File.ReadAllLines( path )
+                                    .Skip( 1 )                                        // Skip header
+                                    .Select( line => line.Split( ';' ) )              // Split each album by ';'
+                                    .Select( album => new Album
+                                    {
+                                            Title = album[ 1 ] ,                      // Album titls is in the second column (index 1)
+                                            ArtistId = Convert.ToInt32( album[ 2 ] )  // Artist ID is in the third column (index 2)
+                                    } ) );
                 return result;
         }
 
@@ -125,22 +122,22 @@ public static class DataLoader
 
                 // Read all tracks from the file, skipping the header row
                 result.AddRange(
-                        File.ReadAllLines( path )
-                        .Skip( 1 )                                              // Skip header
-                        .Select( line => line.Split( ';' ) )                    // Split each track by ';'
-                        .Select( track => new Track
-                        {
-                                //Id = Convert.ToInt32( track[ 0 ] ) ,
-                                Title = track[ 1 ] ,                            // Track titla is in the second column (index 1)
-                                AlbumId = Convert.ToInt32( track[ 2 ] ) ,       // Album ID is in the third column (index 2)
-                                GenreId = Convert.ToInt32( track[ 3 ] ) ,       // Genre ID is in the fourth column (index 3)
-                                Composer = track[ 4 ] ,                         // Composer is in the fifth column (index 4)
-                                Milliseconds = Convert.ToInt64( track[ 5 ] ) ,  // Milliseconds is in the sixth column (index 5)
-                                Bytes = Convert.ToInt64( track[ 6 ] ) ,         // Bytes is in the seventh column (index 6)
-                                UnitPrice = Convert.ToDouble( track[ 7 ] )      // Unit price is in the eighth column (index 7)
-                        } ) );
+                                File.ReadAllLines( path )
+                                    .Skip( 1 )                                              // Skip header
+                                    .Select( line => line.Split( ';' ) )                    // Split each track by ';'
+                                    .Select( track => new Track
+                                    {
+                                            Title = track[ 1 ] ,                            // Track titla is in the second column (index 1)
+                                            AlbumId = Convert.ToInt32( track[ 2 ] ) ,       // Album ID is in the third column (index 2)
+                                            GenreId = Convert.ToInt32( track[ 3 ] ) ,       // Genre ID is in the fourth column (index 3)
+                                            Composer = track[ 4 ] ,                         // Composer is in the fifth column (index 4)
+                                            Milliseconds = Convert.ToInt64( track[ 5 ] ) ,  // Milliseconds is in the sixth column (index 5)
+                                            Bytes = Convert.ToInt64( track[ 6 ] ) ,         // Bytes is in the seventh column (index 6)
+                                            UnitPrice = Convert.ToDouble( track[ 7 ] )      // Unit price is in the eighth column (index 7)
+                                    } ) );
                 return result;
         }
+
         #endregion
 
 
@@ -161,21 +158,22 @@ public static class DataLoader
 
                 #endregion
 
+
                 #region ___F I E L D S___ 
 
-                private static readonly Lazy<CredentialLoader> _instance
-                        = new( ( ) => new CredentialLoader( ) );
+                private static readonly Lazy<CredentialLoader> _instance = new( ( ) => new CredentialLoader( ) );
 
                 private readonly string _path;
 
                 #endregion
 
+
                 #region ___P R O P E R T Y___ 
 
-                public static CredentialLoader Instance
-                        => _instance.Value;
+                public static CredentialLoader Instance => _instance.Value;
 
                 #endregion
+
 
                 #region ___P U B L I C   M E T H O D___ 
 
@@ -198,16 +196,15 @@ public static class DataLoader
                         var user = new List<UserCredentials>( );
 
                         user.AddRange(
-                                File.ReadAllLines( Path.Combine( _path , "Connections" , "credentials.csv" ) )
-                                .Skip( 1 )                         // Skip header
-                                .Select( l => l.Split( ';' ) )
-                                .Select( u => new UserCredentials
-                                {
-                                        Username = u[ 0 ] ,
-                                        Password = u[ 1 ] ,
-                                        Role = u[ 2 ]
-                                } ) );
-
+                                      File.ReadAllLines( Path.Combine( _path , "Connections" , "credentials.csv" ) )
+                                          .Skip( 1 )
+                                          .Select( l => l.Split( ';' ) )
+                                          .Select( u => new UserCredentials
+                                          {
+                                                  Username = u[ 0 ] ,
+                                                  Password = u[ 1 ] ,
+                                                  Role = u[ 2 ]
+                                          } ) );
                         return user.FirstOrDefault( );
                 }
 
@@ -221,14 +218,11 @@ public static class DataLoader
                 /// </summary>
                 public class UserCredentials
                 {
-                        public string Username { get; set; }
-                                = string.Empty;
+                        public string Username { get; set; } = string.Empty;
 
-                        public string Password { get; set; }
-                                = string.Empty;
+                        public string Password { get; set; } = string.Empty;
 
-                        public string Role { get; set; }
-                                = string.Empty;
+                        public string Role { get; set; } = string.Empty;
                 }
 
                 #endregion

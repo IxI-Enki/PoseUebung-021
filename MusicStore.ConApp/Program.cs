@@ -43,7 +43,7 @@ internal class Program
                 {
                         switch(choice)
                         {
-#if DEBUG                               //  D A T A B A S E   I N I T I A T I O N   
+#if DEBUG                       ///  D A T A B A S E   I N I T I A T I O N   
                                 case 0:
                                         ResetDatabaseFromCSV( );
                                         Console.ForegroundColor = ConsoleColor.Green;
@@ -90,8 +90,6 @@ internal class Program
                                         break;
 
                                 ///   A L B U M S   O U T P U T   
-
-
                                 case 9:
                                         PrintAlbums( context );
                                         Console.Write( "\n  Continue with Enter..." );
@@ -108,7 +106,6 @@ internal class Program
                                 case 12:
                                         DeleteAlbum( context );
                                         break;
-
 
                                 ///   T R A C K S   O U T P U T   
                                 case 13:
@@ -135,6 +132,7 @@ internal class Program
                 return input;
         }
 
+
         /// <summary>
         /// Prints the menu.
         /// </summary>
@@ -160,18 +158,20 @@ internal class Program
                 Console.Write( $"  {nameof( QueryArtists/*     */),-25}.... {index++}\n" );
                 Console.Write( $"  {nameof( AddArtist/*        */),-25}.... {index++}\n" );
                 Console.Write( $"  {nameof( DeleteArtist/*     */),-25}.... {index++}\n" );
-
-                Console.WriteLine( $"{nameof( PrintAlbums ),-25}....{index++}" );
-                Console.WriteLine( $"{nameof( QueryAlbums ),-25}....{index++}" );
-                Console.WriteLine( $"{nameof( AddAlbum ),-25}....{index++}" );
-                Console.WriteLine( $"{nameof( DeleteAlbum ),-25}....{index++}" );
-
-
-                Console.WriteLine( $"{nameof( PrintTracks ),-25}....{index++}" );
-                Console.WriteLine( $"{nameof( QueryTracks ),-25}....{index++}" );
-                Console.WriteLine( $"{nameof( AddTrack ),-25}....{index++}" );
-                Console.WriteLine( $"{nameof( DeleteTrack ),-25}....{index++}" );
-
+                //
+                Console.Write( $"  {new string( '─' , 31 ),-25}\n" );
+                //
+                Console.Write( $"  {nameof( PrintAlbums/*      */),-25}.... {index++}\n" );
+                Console.Write( $"  {nameof( QueryAlbums/*      */),-25}... {index++}\n" );
+                Console.Write( $"  {nameof( AddAlbum/*         */),-25}... {index++}\n" );
+                Console.Write( $"  {nameof( DeleteAlbum/*      */),-25}... {index++}\n" );
+                //
+                Console.Write( $"  {new string( '─' , 31 ),-25}\n" );
+                //
+                Console.Write( $"  {nameof( PrintTracks/*      */),-25}... {index++}\n" );
+                Console.Write( $"  {nameof( QueryTracks/*      */),-25}... {index++}\n" );
+                Console.Write( $"  {nameof( AddTrack/*         */),-25}... {index++}\n" );
+                Console.Write( $"  {nameof( DeleteTrack/*      */),-25}... {index++}\n" );
 
                 Console.Write( $"  {new string( '─' , 31 ),-25}\n" );
                 Console.Write( $"  {"Exit",-25}.... x\n" );
@@ -240,6 +240,7 @@ internal class Program
                 }
         }
 
+
         /// <summary>
         /// Adds a new a to the context.
         /// </summary>
@@ -284,6 +285,7 @@ internal class Program
                 }
                 ResetInput( );
         }
+
 
         /// <summary>
         /// Deletes a a from the context.
@@ -369,6 +371,7 @@ internal class Program
                 }
         }
 
+
         /// <summary>
         /// Adds a new artist to the context.
         /// </summary>
@@ -412,8 +415,8 @@ internal class Program
                         context.SaveChanges( );
                 }
                 ResetInput( );
-
         }
+
 
         /// <summary>
         /// Deletes an artist from the context.
@@ -455,7 +458,6 @@ internal class Program
         #endregion
 
 
-        #region ___ T O   D O ___ 
         #region A L B U M S    M E T H O D S
 
         /// <summary>
@@ -508,6 +510,8 @@ internal class Program
         }
 
         #endregion
+
+
         #region T R A C K S   M E T H O D S
 
         /// <summary>
@@ -560,7 +564,6 @@ internal class Program
         }
 
         #endregion
-        #endregion
 
 
         #region H E L P E R   M E T H O D S
@@ -586,36 +589,46 @@ internal class Program
                                 foreach(var a in context.ArtistSet)
                                         Print( a );
                                 break;
+
                         case 'g':
                                 foreach(var a in context.GenreSet)
                                         Print( a );
                                 break;
+
                         case 't':
                                 // Load all related data in one query
                                 var t = context.TrackSet
-                                    .Include( a => a.Album )
-                                        
-                                    .ThenInclude( a => a.Tracks)
-                                        .Include( a => a.Genre )
-                                    .ToList( );
+                                               .Include( a => a.Album )
+                                               .ThenInclude( a => a.Tracks )
+                                               .Include( a => a.Genre )
+                                               .ToList( );
+
                                 foreach(var a in t)
                                         Print( a );
                                 break;
+
                         case 'l':
                                 // Load all related data in one query
                                 var data = context.AlbumSet
-                                    .Include( a => a.Artist )
-                                    .Include( a => a.Tracks )
-                                        .ThenInclude( t => t.Genre )
-                                    .ToList( );
-
+                                                  .Include( a => a.Tracks )
+                                                  .ThenInclude( t => t.Genre )
+                                                  .Include( a => a.Artist )
+                                                  .ToList( );
                                 foreach(var a in data)
-                                        Print( a );
+                                        Print( a , a.Artist );
                                 break;
+
                         default:
                                 break;
                 }
-                static void Print( EntityObject a ) => Console.Write( $" [id:{a.Id,3}]    {a}\n" );
+                static void Print( EntityObject a , EntityObject? b = null )
+                        => Console.Write
+                                   (
+                                        $"\n" +
+#if DEBUG
+                                        $"[id:{a.Id,3}]\n" +
+#endif
+                                        $"    {a}{b}\n" );
         }
 
         private static void PrintErrorMessage( Exception ex )

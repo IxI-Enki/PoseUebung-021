@@ -91,8 +91,7 @@ public abstract partial class IdentityObject : IIdentifiable
         /// <returns>
         /// A hash code for the current object based on its ID.
         /// </returns>
-        public override int GetHashCode( )
-                => Id;
+        public override int GetHashCode( ) => Id;
 
 
         /// <summary>
@@ -103,8 +102,7 @@ public abstract partial class IdentityObject : IIdentifiable
         /// <returns>
         /// A string representation of the object's ID.
         /// </returns>
-        public override string ToString( )
-                => Id.ToString( );
+        public override string ToString( ) => Id.ToString( );
 
         #endregion
 }

@@ -12,9 +12,9 @@ namespace MusicStore.WebAPI.Models;
 ///   providing a concrete implementation of a genre model
 ///   that can be used in data transfer and business logic.
 /// </remarks>
-public class ModelGenre
-        : ModelObject,  // Provides the base class functionality, including the Id property for identification.
-        IGenre          // An interface that defines genre-specific properties like Name.
+public class ModelGenre :
+        ModelObject,  // Provides the base class functionality, including the Id property for identification.
+        IGenre        // An interface that defines genre-specific properties like Name.
 {
 
         #region ___P R O P E R T Y___ 
@@ -23,9 +23,7 @@ public class ModelGenre
         /// Gets or sets the name of the genre.
         /// This is the key attribute defining the genre.
         /// </summary>
-        public string Name { get; set; }
-                // Initialize to an empty string to prevent null reference exceptions
-                = string.Empty;
+        public string Name { get; set; } = string.Empty;
 
         #endregion
 

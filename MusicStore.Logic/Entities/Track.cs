@@ -113,33 +113,16 @@ public sealed class Track : EntityObject, ITrack
                 base.CopyProperties( other );
 
                 // Copy all track-specific properties with efficient null handling
-
-                // Assign other.Title to Title if Title is null.
-                // If both Title and other.Title are null, it will assign string.Empty.
                 Title = other.Title;
-                // Assign other.Composer to Composer if Composer is null.
-                // If both Composer and other.Composer are null, it will assign string.Empty.
-                Composer = other.Composer;
-
                 Bytes = other.Bytes;
                 AlbumId = other.AlbumId;
                 GenreId = other.GenreId;
+                Composer = other.Composer;
                 UnitPrice = other.UnitPrice;
                 Milliseconds = other.Milliseconds;
 
-                // Deep copy for Album if it exists, using null-coalescing assignment
-                //Album ??= new Album( );
-                // Copy is only called if the object exists, preventing null reference exceptions.
-                Album.CopyProperties( other.Album! );
-
-
-                /*
-
-                // Deep copy for Genre if it exists, using null-coalescing assignment
-                // Copy is only called if the object exists, preventing null reference exceptions.
-                */
-                //Genre ??= new Genre( );
-                Genre.CopyProperties( other.Genre! );
+                Album?.CopyProperties( other.Album! );
+                Genre?.CopyProperties( other.Genre! );
         }
 
         #endregion
@@ -157,7 +140,7 @@ public sealed class Track : EntityObject, ITrack
         public override string ToString( )
 
                 => new StringBuilder( )
-                        .AppendLine( $"Titel       : {Title}" )
+                        .AppendLine( $"Track-Titel : {Title}" )
                         .AppendLine( "---------------------" )
                         // Include album title if available, otherwise mark as "Unknown"
                         .AppendLine( $"Album-Title : {Album?.Title ?? "Unknown"}" )
