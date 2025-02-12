@@ -76,7 +76,7 @@ public sealed class MusicStoreContext : DbContext, IContext
                 // Configures the DbContext to use SQL Server with the provided connection string.
                 //
                 // 'ConnectionString' should contain details like server name, database, authentication info.
-                optionsBuilder.UseSqlServer( ConnectionString );
+                optionsBuilder.UseSqlServer( ConnectionString ).EnableDetailedErrors( );
 
                 // Calls the base DbContext's OnConfiguring method.
                 //
