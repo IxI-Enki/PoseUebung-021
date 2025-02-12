@@ -92,15 +92,15 @@ public abstract class GenericController<TModel, TEntity>
                 var dbSet = GetDbSet( context );
 
                 var querySet = dbSet
-                    .AsQueryable( )   // Convert to IQueryable for LINQ operations
-                    .AsNoTracking( ); // Disable change tracking for performance when we don't need to update entities
+                                .AsQueryable( )   // Convert to IQueryable for LINQ operations
+                                .AsNoTracking( ); // Disable change tracking for performance when we don't need to update entities
 
                 var query = querySet
-                    .Take( GLOBAL_USINGS.MAX_COUNT ) // Limit the number of items returned to prevent overwhelming responses
-                    .ToArray( );                     // Execute the query and convert to array
+                                .Take( GLOBAL_USINGS.MAX_COUNT ) // Limit the number of items returned to prevent overwhelming responses
+                                .ToArray( );                     // Execute the query and convert to array
 
                 var result = query
-                    .Select( e => ToModel( e ) ); // Convert each entity to its model representation
+                                .Select( e => ToModel( e ) ); // Convert each entity to its model representation
 
                 // Return the result with an OK status
                 return Ok( result );
@@ -166,15 +166,16 @@ public abstract class GenericController<TModel, TEntity>
         public ActionResult<TModel>? Get( int id )
         {
                 using var context = GetContext( );
+
                 var dbSet = GetDbSet( context );
 
                 // Use FirstOrDefault to get the entity or null if not found
                 var result = dbSet
-                    .FirstOrDefault( e => e.Id == id );
+                                .FirstOrDefault( e => e.Id == id );
 
                 return result != null
-                    ? Ok( ToModel( result ) )         // If found, return the model with OK status
-                    : NotFound( $"{id} not found" );  // If not found, return NotFound with a message
+                               ? Ok( ToModel( result ) )         // If found, return the model with OK status
+                               : NotFound( $"{id} not found" );  // If not found, return NotFound with a message
         }
 
         #endregion
@@ -262,20 +263,20 @@ public abstract class GenericController<TModel, TEntity>
 
                         // Look for the entity by ID
                         var entity = dbSet
-                            .FirstOrDefault( e => e.Id == id );
+                                        .FirstOrDefault( e => e.Id == id );
 
                         if(entity != null)
                         {
                                 // Update entity properties from model
-                                entity.CopyProperties( model );  
-                                
+                                entity.CopyProperties( model );
+
                                 // Save changes to the database
-                                context.SaveChanges( );          
+                                context.SaveChanges( );
                         }
 
                         return entity == null
-                            ? NotFound( $"{id} not found" )  // Return NotFound if entity wasn't found
-                            : Ok( ToModel( entity ) );       // Return updated model if update was successful
+                                       ? NotFound( $"{id} not found" )  // Return NotFound if entity wasn't found
+                                       : Ok( ToModel( entity ) );       // Return updated model if update was successful
                 }
                 catch(Exception ex)
                 {
@@ -314,19 +315,19 @@ public abstract class GenericController<TModel, TEntity>
 
                         // Find the entity to delete
                         var entity = dbSet
-                            .FirstOrDefault( e => e.Id == id );
+                                        .FirstOrDefault( e => e.Id == id );
 
                         if(entity != null)
                         {
                                 // Mark the entity for deletion
-                                dbSet.Remove( entity ); 
+                                dbSet.Remove( entity );
 
                                 // Commit the deletion to the database
-                                context.SaveChanges( ); 
+                                context.SaveChanges( );
                         }
                         return entity == null
-                            ? NotFound( $"{id} not found" )  // If not found, return NotFound
-                            : NoContent( );                  // If deleted, return NoContent (204)
+                                       ? NotFound( $"{id} not found" )  // If not found, return NotFound
+                                       : NoContent( );                  // If deleted, return NoContent (204)
                 }
                 catch(Exception ex)
                 {
