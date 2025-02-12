@@ -1,5 +1,11 @@
 ###### <p align="center"> PoseUebung-021 </p>
 
+<div align="right"> 
+  
+  ![GitHub repo size](https://img.shields.io/github/repo-size/IxI-Enki/PoseUebung-021)
+
+</div>
+
 <div align="center">
 
   # Music Store 
