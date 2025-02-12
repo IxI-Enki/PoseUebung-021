@@ -591,11 +591,25 @@ internal class Program
                                         Print( a );
                                 break;
                         case 't':
-                                foreach(var a in context.TrackSet)
+                                // Load all related data in one query
+                                var t = context.TrackSet
+                                    .Include( a => a.Album )
+                                        
+                                    .ThenInclude( a => a.Tracks)
+                                        .Include( a => a.Genre )
+                                    .ToList( );
+                                foreach(var a in t)
                                         Print( a );
                                 break;
                         case 'l':
-                                foreach(var a in context.AlbumSet)
+                                // Load all related data in one query
+                                var data = context.AlbumSet
+                                    .Include( a => a.Artist )
+                                    .Include( a => a.Tracks )
+                                        .ThenInclude( t => t.Genre )
+                                    .ToList( );
+
+                                foreach(var a in data)
                                         Print( a );
                                 break;
                         default:

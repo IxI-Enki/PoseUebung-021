@@ -21,7 +21,38 @@ public sealed class MusicStoreContext : DbContext, IContext
                     .HasMany( a => a.Tracks )
                     .WithOne( t => t.Album )
                     .HasForeignKey( t => t.AlbumId );
+
+                modelBuilder.Entity<Album>()
+                        .HasOne( a => a.Artist )
+                        .WithMany( a => a.Albums )
+                        .HasForeignKey( a => a.ArtistId );
+
+
+                modelBuilder.Entity<Artist>( )
+                    .HasMany( a => a.Albums )
+                    .WithOne( a => a.Artist )
+                    .HasForeignKey( a => a.ArtistId );
+
+                modelBuilder.Entity<Genre>( )
+                        .HasMany( g => g.Tracks )
+                        .WithOne( t => t.Genre )
+                        .HasForeignKey( t => t.GenreId );
+
+
+                modelBuilder.Entity<Track>( )
+                        .HasOne( t => t.Album )
+                        .WithMany( a => a.Tracks )
+                        .HasForeignKey( t => t.AlbumId );
+
+                modelBuilder.Entity<Track>( )
+                        .HasOne( t => t.Genre )
+                        .WithMany( g => g.Tracks )
+                        .HasForeignKey( t => t.GenreId );
  
+
+
+
+
                 // Configure other entities and relationships here as needed
         }
 

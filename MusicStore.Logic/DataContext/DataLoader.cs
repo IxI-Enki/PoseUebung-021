@@ -46,7 +46,7 @@ public static class DataLoader
                         .Select( line => line.Split( ';' ) )  // Split each user by ';'
                         .Select( genre => new Genre
                         {
-                                //Id = Convert.ToInt32( genre[ 0 ] ) ,
+                               //Id = Convert.ToInt32( genre[ 0 ] ) ,
                                 Name = genre[ 1 ]             // Genre name is in the second column (index 1)
                         } ) );
                 return result;
@@ -83,7 +83,7 @@ public static class DataLoader
                         .Select( line => line.Split( ';' ) )  // Split each user by ';'
                         .Select( artist => new Artist
                         {
-                                //Id = Convert.ToInt32( artist[ 0 ] ) ,
+                                 //Id = Convert.ToInt32( artist[ 0 ] ) ,
                                 Name = artist[ 1 ]            // Artist name is in the second column (index 1)
                         } ) );
                 return result;
@@ -106,7 +106,7 @@ public static class DataLoader
                         .Select( line => line.Split( ';' ) )              // Split each album by ';'
                         .Select( album => new Album
                         {
-                                //Id = Convert.ToInt32( album[ 0 ] ) ,
+                               //Id = Convert.ToInt32( album[ 0 ] ) ,
                                 Title = album[ 1 ] ,                      // Album titls is in the second column (index 1)
                                 ArtistId = Convert.ToInt32( album[ 2 ] )  // Artist ID is in the third column (index 2)
                         } ) );
@@ -132,7 +132,7 @@ public static class DataLoader
                         {
                                 //Id = Convert.ToInt32( track[ 0 ] ) ,
                                 Title = track[ 1 ] ,                            // Track titla is in the second column (index 1)
-                                //AlbumId = Convert.ToInt32( track[ 2 ] ) ,       // Album ID is in the third column (index 2)
+                                AlbumId = Convert.ToInt32( track[ 2 ] ) ,       // Album ID is in the third column (index 2)
                                 GenreId = Convert.ToInt32( track[ 3 ] ) ,       // Genre ID is in the fourth column (index 3)
                                 Composer = track[ 4 ] ,                         // Composer is in the fifth column (index 4)
                                 Milliseconds = Convert.ToInt64( track[ 5 ] ) ,  // Milliseconds is in the sixth column (index 5)

@@ -1,11 +1,14 @@
-﻿using System.Transactions;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Transactions;
 
 ///   N A M E S P A C E   ///
 namespace MusicStore.Logic.Entities;
 
 
 [Table( "Tracks" )]
-[Index( nameof( Title ) , IsUnique = true )]
+[Index( nameof( Title ) )]
+[Index( nameof( AlbumId ) )]
+[Index( nameof( GenreId ) )]
 /// <summary>
 /// Represents a track in the music store database,
 ///   ínheriting from <see cref="EntityObject"/>
@@ -124,13 +127,10 @@ public sealed class Track : EntityObject, ITrack
                 UnitPrice = other.UnitPrice;
                 Milliseconds = other.Milliseconds;
 
-                Album = other.Album;
-                //Genre = other.Genre;
-
                 // Deep copy for Album if it exists, using null-coalescing assignment
                 //Album ??= new Album( );
                 // Copy is only called if the object exists, preventing null reference exceptions.
-                //Album.CopyProperties( other.Album! );
+                Album.CopyProperties( other.Album! );
 
 
                 /*
@@ -139,7 +139,7 @@ public sealed class Track : EntityObject, ITrack
                 // Copy is only called if the object exists, preventing null reference exceptions.
                 */
                 //Genre ??= new Genre( );
-                //Genre.CopyProperties( other.Genre! );
+                Genre.CopyProperties( other.Genre! );
         }
 
         #endregion
