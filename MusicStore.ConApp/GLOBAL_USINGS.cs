@@ -30,6 +30,8 @@ global using Factory = MusicStore.Logic.DataContext.Factory;
 global using IContext = MusicStore.Logic.Contracts.IContext;
 
 
+global using TEntity = MusicStore.Logic.Entities.EntityObject;
+
 ///   N A M E S P A C E   ///
 namespace MusicStore.ConApp;
 

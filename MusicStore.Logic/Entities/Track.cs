@@ -107,38 +107,30 @@ public sealed class Track : EntityObject, ITrack
                 // Copy properties from the base class (like ID)
                 base.CopyProperties( other );
 
-                // Copy all track-specific properties
-                Title = other.Title;
+                // Copy all track-specific properties with efficient null handling
+
+                // Assign other.Title to Title if Title is null.
+                // If both Title and other.Title are null, it will assign string.Empty.
+                Title ??= other.Title ?? string.Empty;
+                // Assign other.Composer to Composer if Composer is null.
+                // If both Composer and other.Composer are null, it will assign string.Empty.
+                Composer ??= other.Composer ?? string.Empty;
+
                 Bytes = other.Bytes;
                 AlbumId = other.AlbumId;
                 GenreId = other.GenreId;
-                Composer = other.Composer;
                 UnitPrice = other.UnitPrice;
                 Milliseconds = other.Milliseconds;
 
-                // Perform a deep copy of the Album if it exists
-                if(other.Album != null)
-                {
-                        // If no album in this instance, create a new one
-                        Album ??= new Album( );
+                // Deep copy for Album if it exists, using null-coalescing assignment
+                Album ??= new Album( );
+                // Copy is only called if the object exists, preventing null reference exceptions.
+                Album?.CopyProperties( other.Album! );
 
-                        // Copy properties from other album
-                        Album.CopyProperties( other.Album );
-                }
-                else    // If no album in source, set to null
-                        Album = null;
-
-                // Perform a deep copy of the Genre if it exists
-                if(other.Genre != null)
-                {
-                        // If no genre in this instance, create a new one
-                        Genre ??= new Genre( );
-
-                        // copy properties from other genre
-                        Genre.CopyProperties( other.Genre );
-                }
-                else    // If no genre in source, set to null
-                        Genre = null;
+                // Deep copy for Genre if it exists, using null-coalescing assignment
+                Genre ??= new Genre( );
+                // Copy is only called if the object exists, preventing null reference exceptions.
+                Genre?.CopyProperties( other.Genre! );
         }
 
         #endregion

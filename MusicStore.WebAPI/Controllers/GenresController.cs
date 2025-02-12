@@ -4,6 +4,19 @@ namespace MusicStore.WebAPI.Controllers;
 
 [Route( "api/[controller]" )]
 [ApiController]
+/// <summary>
+/// Controller for handling HTTP requests related to genres in the music store application.
+/// </summary>
+///
+/// <typeparam name="TGenre">
+/// The model type representing a genre, which should inherit from <see cref="ModelObject"/>.
+/// </typeparam>
+///
+/// <remarks>
+/// This controller leverages a generic base controller to provide CRUD operations for genres.
+/// It implements specific overrides to manage genre data,
+///   interfacing with the database an abstracted context and providing transformation between entities and models.
+/// </remarks>
 public class GenresController : GenericController<TGenre , Genre>
 {
 
@@ -46,8 +59,10 @@ public class GenresController : GenericController<TGenre , Genre>
         /// </returns>
         protected override TGenre ToModel( Genre genre )
         {
+                // Create a new instance of TGenre
                 var result = new TGenre( );
 
+                // Copy properties from the genre entity to the model
                 result.CopyProperties( genre );
 
                 return result;

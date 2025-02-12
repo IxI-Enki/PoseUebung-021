@@ -110,7 +110,7 @@ public static class Factory
 
                 }
                 catch
-                {            
+                {
                         // Handle exceptions that occur during database initialization
                         Console.ForegroundColor = ConsoleColor.Red;
 

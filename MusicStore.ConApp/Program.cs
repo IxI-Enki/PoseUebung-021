@@ -212,15 +212,8 @@ internal class Program
         /// </param>
         private static void PrintGenres( IContext context )
         {
-                Console.Write
-                        (
-                                "\n  All Genres\n"
-                                + $"  {new string( '─' , 31 )}\n"
-                        );
-
-                foreach(var g in context.GenreSet)
-
-                        Console.Write( $" [id:{g.Id,3}]   {g}\n" );
+                PrintHeader( 'g' );
+                PrintResult( context , 'g' );
         }
 
         /// <summary>
@@ -248,11 +241,8 @@ internal class Program
                 }
                 catch(Exception ex)
                 {
-                        Console.ForegroundColor = ConsoleColor.Red;
-
-                        Console.Write( $"\n  {ex.Message}\n" );
+                        PrintErrorMessage( ex );
                 }
-                Console.ResetColor( );
         }
 
         /// <summary>
@@ -275,13 +265,11 @@ internal class Program
 
                 string input = Console.ReadLine( )!;
 
-                if(input == string.Empty)
-                {
-                        Console.ForegroundColor = ConsoleColor.Red;
+                Console.ForegroundColor = ConsoleColor.Red;
 
-                        Console.Write( "\n  Can not add empty string to the Set!\n" );
-                }
-                else if(context.GenreSet.FirstOrDefault( g => g.Name == input ) != null)
+                CheckForEmptyInput( input , 1 );
+
+                if(context.GenreSet.FirstOrDefault( g => g.Name == input ) != null)
                 {
                         Console.ForegroundColor = ConsoleColor.Yellow;
 
@@ -299,9 +287,7 @@ internal class Program
 
                         context.SaveChanges( );
                 }
-                Console.ResetColor( );
-
-                Console.ReadLine( );
+                ResetInput( );
         }
 
         /// <summary>
@@ -323,11 +309,9 @@ internal class Program
 
                 Console.ForegroundColor = ConsoleColor.Red;
 
-                if(input == string.Empty)
+                CheckForEmptyInput( input , -1 );
 
-                        Console.Write( "  Can not remove empty string from the Set!\n" );
-
-                else if(context.GenreSet.FirstOrDefault( g => g.Name == input ) == null)
+                if(context.GenreSet.FirstOrDefault( g => g.Name == input ) == null)
 
                         Console.Write( $"\n  No genre with the name \"{input}\" was found in the Set!\n" );
                 else
@@ -340,9 +324,7 @@ internal class Program
 
                         context.SaveChanges( );
                 }
-                Console.ResetColor( );
-
-                Console.ReadLine( );
+                ResetInput( );
         }
 
         #endregion
@@ -359,15 +341,8 @@ internal class Program
         /// </param>
         private static void PrintArtists( IContext context )
         {
-                Console.Write
-                        (
-                                "\n  All Artists\n"
-                                + $"  {new string( '─' , 31 )}\n"
-                        );
-
-                foreach(var a in context.ArtistSet)
-
-                        Console.Write( $" [id:{a.Id,3}]    {a}\n" );
+                PrintHeader( 'a' );
+                PrintResult( context , 'a' );
         }
 
         /// <summary>
@@ -395,11 +370,7 @@ internal class Program
                 }
                 catch(Exception ex)
                 {
-                        Console.ForegroundColor = ConsoleColor.Red;
-
-                        Console.Write( $"\n  {ex.Message}\n" );
-
-                        Console.ResetColor( );
+                        PrintErrorMessage( ex );
                 }
         }
 
@@ -423,13 +394,11 @@ internal class Program
 
                 string input = Console.ReadLine( )!;
 
-                if(input == string.Empty)
-                {
-                        Console.ForegroundColor = ConsoleColor.Red;
+                Console.ForegroundColor = ConsoleColor.Red;
 
-                        Console.Write( "\n  Can not add empty string to the Set!\n" );
-                }
-                else if(context.ArtistSet.FirstOrDefault( a => a.Name == input ) != null)
+                CheckForEmptyInput( input , 1 );
+
+                if(context.ArtistSet.FirstOrDefault( a => a.Name == input ) != null)
                 {
                         Console.ForegroundColor = ConsoleColor.Yellow;
 
@@ -447,9 +416,8 @@ internal class Program
 
                         context.SaveChanges( );
                 }
-                Console.ResetColor( );
+                ResetInput( );
 
-                Console.ReadLine( );
         }
 
         /// <summary>
@@ -471,11 +439,9 @@ internal class Program
 
                 Console.ForegroundColor = ConsoleColor.Red;
 
-                if(input == string.Empty)
+                CheckForEmptyInput( input , -1 );
 
-                        Console.Write( "  Can not remove empty string from the Set!\n" );
-
-                else if(context.ArtistSet.FirstOrDefault( a => a.Name == input ) == null)
+                if(context.ArtistSet.FirstOrDefault( a => a.Name == input ) == null)
 
                         Console.Write( $"\n  No artist with the name \"{input}\" was found in the Set!\n" );
                 else
@@ -488,9 +454,7 @@ internal class Program
 
                         context.SaveChanges( );
                 }
-                Console.ResetColor( );
-
-                Console.ReadLine( );
+                ResetInput( );
         }
 
         #endregion
@@ -508,7 +472,8 @@ internal class Program
         /// </param>
         private static void PrintAlbums( IContext context )
         {
-                throw new NotImplementedException( );
+                PrintHeader( 'l' );
+                PrintResult( context , 'l' );
         }
 
         /// <summary>
@@ -559,7 +524,8 @@ internal class Program
         /// </param>
         private static void PrintTracks( IContext context )
         {
-                throw new NotImplementedException( );
+                PrintHeader( 't' );
+                PrintResult( context , 't' );
         }
 
         /// <summary>
@@ -599,5 +565,67 @@ internal class Program
         }
 
         #endregion
+        #endregion
+
+
+        #region H E L P E R   M E T H O D S
+        private static void CheckForEmptyInput( string? input , int addOrRemoveMod )
+        {
+                if(input == string.Empty)
+
+                        Console.Write( $"  Can not {(addOrRemoveMod < 0 ? "remove" : "add")} empty string {(addOrRemoveMod < 0 ? "from" : "to")} the Set!\n" );
+        }
+
+        private static void ResetInput( )
+        {
+                Console.ResetColor( );
+
+                Console.ReadLine( );
+        }
+
+        private static void PrintResult( IContext context , char setMod )
+        {
+                switch(setMod)
+                {
+                        case 'a':
+                                foreach(var a in context.ArtistSet)
+                                        Print( a );
+                                break;
+                        case 'g':
+                                foreach(var a in context.GenreSet)
+                                        Print( a );
+                                break;
+                        case 't':
+                                foreach(var a in context.TrackSet)
+                                        Print( a );
+                                break;
+                        case 'l':
+                                foreach(var a in context.AlbumSet)
+                                        Print( a );
+                                break;
+                        default:
+                                break;
+                }
+                static void Print( EntityObject a ) => Console.Write( $" [id:{a.Id,3}]    {a}\n" );
+        }
+
+        private static void PrintErrorMessage( Exception ex )
+        {
+                Console.ForegroundColor = ConsoleColor.Red;
+
+                Console.Write( $"\n  {ex.Message}\n" );
+
+                Console.ResetColor( );
+        }
+
+        private static void PrintHeader( char v )
+        {
+                Console.Write
+                        (
+                                $"\n  All {(v == 'g' ? "Genres" : v == 't' ? "Tracks" : v == 'l' ? "Albums" : "Artists")}\n"
+                                + $"  {new string( '─' , 31 )}\n"
+                        );
+        }
+
         #endregion
 }

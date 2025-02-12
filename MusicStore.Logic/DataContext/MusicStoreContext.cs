@@ -121,8 +121,7 @@ public sealed class MusicStoreContext : DbContext, IContext
         /// This property is internal,
         ///   it's used within this assembly for database configuration.
         /// </summary>
-        internal static string ConnectionString 
-                => File.ReadAllText( _connectionString( ) );
+        internal static string ConnectionString => File.ReadAllText( _connectionString( ) );
 
         #endregion
 

@@ -85,20 +85,10 @@ public sealed class Album : EntityObject, IAlbum
                 // Copy the album-specific properties
                 Title = other.Title;
 
-                // Perform a deep copy of the Artist if it exists
-                if(other.Artist != null)
-                {
-                        // If no artist in this instance, create a new one
-                        Artist ??= new Artist( );
-
-                        // Copy properties from other artist
-                        Artist.CopyProperties( other.Artist );
-                }
-                else
-                {
-                        // If no artist in source, set to null
-                        Artist = null;
-                }
+                // Deep copy for Artist if it exists, using null-coalescing assignment
+                Artist ??= new Artist( );
+                // Copy is only called if the object exists, preventing null reference exceptions.
+                Artist?.CopyProperties( other.Artist! );
         }
 
         #endregion
@@ -122,7 +112,7 @@ public sealed class Album : EntityObject, IAlbum
                         .AppendLine( "------------------------" )
                         // Append each track title on a new line
                         .AppendLine( string.Join( Environment.NewLine , Tracks.Select( t => t.Title ) ) )
-                        .ToString( );  // Convert StringBuilder to string and return
+                        .ToString( );
 
         #endregion
 }
