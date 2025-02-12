@@ -1,5 +1,7 @@
 ﻿using Humanizer;
+using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Transactions;
 
 ///   N A M E S P A C E   ///
@@ -157,17 +159,17 @@ public sealed class Track : EntityObject, ITrack
                          .AppendLine( GLOBAL_USINGS.Seperator_Line( ).ForegroundColor( "30,30,30" ) )
 
                          // Include genre name if available, otherwise mark as "Unknown"
-                         .AppendLine( $"    Genre       : {Genre?.Name ?? "\u001b[38;2;190;40;60mUnknown\u001b[0m"}" )
+                         .AppendLine( $"    Genre       : {Genre?.Name ?? "Unknown"}" )
 
                          .AppendLine( $"    {((Composer == "<NULL>")
 
-                                ? ("\u001b[38;2;190;40;60mComposer    : Unknown\u001b[0m") : ($"Composer    : {Composer}"))}" )
+                                ? ("Composer    : Unknown".ForegroundColor( "180,60,44" )) : ($"Composer    : {Composer}"))}" )
 
 
                          .AppendLine( GLOBAL_USINGS.Seperator_Dotted( ).ForegroundColor( "30,30,30" ) )
 
                          // Convert milliseconds to seconds for human readability
-                         .AppendLine( $"    Duration    : {TimeSpan.FromMilliseconds( Milliseconds ).Humanize( 2 )}" )
+                         .AppendLine( $"    Duration    : {TimeSpan.FromMilliseconds( Milliseconds ).Humanize( precision: 2 , collectionSeparator: " & " )}" )
 
                          .AppendLine( $"    Unit-Price  : {UnitPrice} [€]" )
 

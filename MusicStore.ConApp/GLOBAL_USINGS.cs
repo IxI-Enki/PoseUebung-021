@@ -28,9 +28,11 @@ global using Artist = MusicStore.Logic.Entities.Artist;
 //
 global using Factory = MusicStore.Logic.DataContext.Factory;
 global using IContext = MusicStore.Logic.Contracts.IContext;
-
-
 global using TEntity = MusicStore.Logic.Entities.EntityObject;
+
+///   E X T E N S I O N S   ///
+global using MusicStore.Logic.Extensions;
+
 
 ///   N A M E S P A C E   ///
 namespace MusicStore.ConApp;

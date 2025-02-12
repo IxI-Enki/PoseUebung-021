@@ -1,4 +1,4 @@
-﻿using MusicStore.Logic.Extensions;
+﻿ 
 
 ///   N A M E S P A C E   ///
 namespace MusicStore.ConApp;
@@ -210,7 +210,6 @@ internal class Program
         /// </param>
         private static void PrintGenres( IContext context ) => PrintHeader( context , 'g' );
 
-
         /// <summary>
         /// Queries genres based on a user-provided condition.
         /// </summary>
@@ -235,7 +234,6 @@ internal class Program
                         PrintErrorMessage( ex );
                 }
         }
-
 
         /// <summary>
         /// Adds a new a to the context.
@@ -271,7 +269,6 @@ internal class Program
                         }
                 ResetInput( );
         }
-
 
         /// <summary>
         /// Deletes a a from the context.
@@ -318,7 +315,6 @@ internal class Program
         /// </param>
         private static void PrintArtists( IContext context ) => PrintHeader( context , 'a' );
 
-
         /// <summary>
         /// Queries artists based on a user-provided condition.
         /// </summary>
@@ -343,7 +339,6 @@ internal class Program
                         PrintErrorMessage( ex );
                 }
         }
-
 
         /// <summary>
         /// Adds a new artist to the context.
@@ -378,7 +373,6 @@ internal class Program
                         }
                 ResetInput( );
         }
-
 
         /// <summary>
         /// Deletes an artist from the context.
@@ -423,7 +417,6 @@ internal class Program
         /// The music store context.
         /// </param>
         private static void PrintAlbums( IContext context ) => PrintHeader( context , 'l' );
-
 
         /// <summary>
         /// Queries albums based on a user-provided condition.
@@ -475,7 +468,6 @@ internal class Program
         /// </param>
         private static void PrintTracks( IContext context ) => PrintHeader( context , 't' );
 
-
         /// <summary>
         /// Queries tracks based on a user-provided condition.
         /// </summary>
@@ -525,8 +517,6 @@ internal class Program
 
                 return !result;
         }
-
-
 
         private static void PrintResult( IContext context , char setMod )
         {
@@ -591,11 +581,9 @@ internal class Program
                            );
         }
 
-
         private static void PrintErrorMessage( Exception ex ) => Console.Write( $"\n  {ex.Message}\n".ForegroundColor( "190,20,30" ) );
 
         private static void ResetInput( ) => Console.ReadLine( );
-
 
         private static void PrintHeader( IContext context , char v )
         {
