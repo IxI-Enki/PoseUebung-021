@@ -100,69 +100,31 @@
  
   - ### *Artist-Controller* : 
 
+<!--
+
     - #### *GET* :
 
-<!--
       <div align="center">
 
       | <img src="img/g.png" alt="genres-api" width=740px > | 
       |:-----------------------------------------------------------:|
--->
     
    | ***ALL*** |
    |:-----------------------------------------------------------|
-<!-- 
      | <img src="img/g-get-all.png" alt="genres-api-all" width=740px > | 
      | <img src="img/g-all.png" alt="genres-all" width=740px > | 
--->    
 
    | *by* ***ID*** |
    |:-----------------------------------------------------------|
-<!--
       | <img src="img/g-get-id.png" alt="genres-api-id" width=740px > | 
       | <img src="img/g-id.png" alt="genres-id" width=740px > | 
--->
 
    | *by* ***Query*** |
    |:-----------------------------------------------------------|
-<!-- 
   | <img src="img/g-get-query.png" alt="genres-api-query" width=740px > | 
   | <img src="img/g-query.png" alt="genres-query" width=740px > | 
 
       </div>
 -->
-   ---
-   - #### *POST* :
-    
-      <div align="center">
-      
-      </div>
 
-        ---
-
-   - #### *PUT* :
-    
-      <div align="center">
-      
-      </div>
-
-        ---
-
-   - #### *PATCH* :
-    
-      <div align="center">
-      
-      </div>
-
-        ---
-
-   - #### *DELETE* :
-    
-      <div align="center">
-      
-      </div>
-
- ---
-     
-     
-     
+---
