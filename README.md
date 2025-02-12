@@ -23,7 +23,14 @@
  
 ---
 
-## 1.<sub>)</sub> Database
+## 1.<sub>)</sub> Console Application
+
+  <div align="center">
+
+   | <img src="img/output-example.png" alt="genres-api" width=740px > | 
+   |:----------------------------------------------------------------:|
+
+ </div>
 
 ---
 
@@ -73,17 +80,12 @@
 
          ---
 
-  > [!WARNING]  
-  > <br>
-  > <br>
-  > <br>
-
----
-
 <div align="center">
   
   $$\Huge\color{orange}{subject \quad to \quad change \quad - \quad work \quad in \quad progress \quad !}$$
 ---  
+
+
 
 </div>
   
