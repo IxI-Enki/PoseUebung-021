@@ -30,12 +30,16 @@ public static class Controll<T> where T : EntityObject
                 try
                 {
                         if(type == "Genre")
+                        {
                                 foreach(var a in context.GenreSet.AsQueryable( ).Where( input! ).Include( a => a.Tracks ))
                                         Console.Write( $"{$" [id:{a.Id,3}]".ForegroundColor( "190,120,40" )}   {a}\n" );
+                        }
 
                         else if(type == "Artist")
+                        {
                                 foreach(var a in context.ArtistSet.AsQueryable( ).Where( input! ).Include( a => a.Albums ))
                                         Console.Write( $"{$" [id:{a.Id,3}]".ForegroundColor( "190,120,40" )}   {a}\n" );
+                        }
 
                         else if(type == "Album")
                         {
@@ -53,13 +57,13 @@ public static class Controll<T> where T : EntityObject
                         else if(type == "Track")
                         {
                                 // Load all related data in one query
-                                var t = context.TrackSet
+                                var data = context.TrackSet
                                                .Include( a => a.Album )
                                                .ThenInclude( a => a.Tracks )
                                                .Include( a => a.Genre )
                                                .ToList( );
 
-                                foreach(var a in t.AsQueryable( ).Where( input! ).Include( a => a.Album ))
+                                foreach(var a in data.AsQueryable( ).Where( input! ).Include( a => a.Album ))
                                         Console.Write( $"{$" [id:{a.Id,3}]".ForegroundColor( "190,120,40" )}   \n{a}\n" );
                         }
                 }
@@ -89,7 +93,7 @@ public static class Controll<T> where T : EntityObject
                 // Get user input for type and name/title
                 PrintPrompt( out string type , out string? input , function );
 
-                // Check if input isn't empty and get the correct set
+                // Check if input isn'data empty and get the correct set
                 if(!IsEmptyInput( input , 1 ) && GetSet( type , context ) is DbSet<T> set)
                 {
                         // Look for an existing element with this name
@@ -140,7 +144,7 @@ public static class Controll<T> where T : EntityObject
                 // Get user input for type and name/title
                 PrintPrompt( out string type , out string? input , function );
 
-                // Check if input isn't empty and get the correct set
+                // Check if input isn'data empty and get the correct set
                 if(!IsEmptyInput( input , -1 ) && GetSet( type , context ) is DbSet<T> set)
                 {
                         // Look for the element to delete
@@ -283,7 +287,7 @@ public static class Controll<T> where T : EntityObject
                         // Create a new Track
                         "Track" when typeof( T ) == typeof( Track ) => ( T )( object )new Track { Title = input },
 
-                        // Return null if type doesn't match
+                        // Return null if type doesn'data match
                         _ => null
                 };
         }
