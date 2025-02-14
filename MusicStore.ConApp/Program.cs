@@ -49,6 +49,10 @@ internal class Program
                                         Console.Write( "\n  Database was reset.".ForegroundColor( "green" ) );
                                         WaitForUser( );
                                         break;
+                                case 17:
+                                        OverrideOldDatabase( );
+                                        Console.Write( "\n  Old database was overridden".ForegroundColor( "green" ) );
+                                        break;
 #endif
                                 ///   G E N R E S   O U T P U T   
                                 case 1:
@@ -157,11 +161,15 @@ internal class Program
                 Console.Write( $"  {nameof( QueryTracks/*      */),-25}... {index++}\n" );
                 Console.Write( $"  {nameof( AddTrack/*         */),-25}... {index++}\n" );
                 Console.Write( $"  {nameof( DeleteTrack/*      */),-25}... {index++}\n" );
-
+#if DEBUG
+                Console.Write( $" {new string( '┄' , 33 ),-25}\n" );
+                Console.Write( $"  {nameof( OverrideOldDatabase ),-25}... {index++}\n" );
+#endif
                 Console.Write( $"  {new string( '─' , 31 ),-25}\n" );
                 Console.Write( $"  {"Exit",-25}.... x\n" );
                 Console.Write( $" {new string( '━' , 33 )}\n" );
                 Console.Write( $"  Your choice :{' ',-17}" );
+
         }
 
         #endregion
@@ -300,7 +308,7 @@ internal class Program
         /// <param name="context">
         /// The music store context.
         /// </param>
-        private static void AddAlbum( IContext context ) => Controll<Album>.Add<Album>( context );
+        private static void AddAlbum( IContext context ) => Controll<Album>.Add<Album>( context );   // TODO: Implement AddAlbum
 
 
         /// <summary>
@@ -343,10 +351,7 @@ internal class Program
         /// <param name="context">
         /// The music store context.
         /// </param>
-        private static void AddTrack( IContext context )
-        {
-                throw new NotImplementedException( );
-        }
+        private static void AddTrack( IContext context ) => Controll<Track>.Add<Track>( context );   // TODO: Implement AddTrack
 
 
         /// <summary>
@@ -448,4 +453,10 @@ internal class Program
         }
 
         #endregion
+
+
+        private static void OverrideOldDatabase( )                                                   // TODO: Implement OverrideOldDatabase
+        {
+                throw new NotImplementedException( );
+        }
 }

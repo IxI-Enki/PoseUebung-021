@@ -102,13 +102,12 @@ public static class Controll<T> where T : EntityObject
                         // If no element exists with this name
                         if(element == null)
                         {
-
                                 // Create and add new element
                                 var a = CreateElement<F>( type , input! )!;
 
                                 if(a is Album al)
                                 {
-
+                                        throw new NotImplementedException();
 
                                 }
 
@@ -150,12 +149,8 @@ public static class Controll<T> where T : EntityObject
                         // Look for the element to delete
                         EntityObject? element = GetElement( input , set );
 
-                        // If element not found
-                        if(element == null)
-
-                                // Inform user if element not found
-                                Console.Write( $"\n   No {type} with the name \"{input}\" was found in the Set!\n".ForegroundColor( "190,20,30" ) );
-                        else
+                        // If element found
+                        if(element != null)
                         {
                                 // Remove the found element
                                 set.Remove( GetElement( input , set )! );
@@ -166,6 +161,9 @@ public static class Controll<T> where T : EntityObject
                                 // Commit the change to the database
                                 context.SaveChanges( );
                         }
+                        else
+                                // Inform user if element not found
+                                Console.Write( $"\n   No {type} with the name \"{input}\" was found in the Set!\n".ForegroundColor( "190,20,30" ) );
                 }
                 // Wait for user to acknowledge before continuing
                 Console.ReadLine( );
