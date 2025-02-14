@@ -1,4 +1,6 @@
-﻿///   N A M E S P A C E   ///
+﻿using MusicStore.Logic.Controllers;
+
+///   N A M E S P A C E   ///
 namespace MusicStore.ConApp;
 
 
@@ -274,28 +276,8 @@ internal class Program
         /// <param name="context">
         /// The music store context.
         /// </param>
-        private static void DeleteGenre( IContext context )
-        {
-                Console.Write( $"\n  Delete Genre\n  {new string( '─' , 31 )}\n  " );
+        private static void DeleteGenre( IContext context ) => Controll<Genre>.Delete( context );
 
-                string input = Console.ReadLine( )!;
-
-
-                if(CheckForEmptyInput( input , -1 ))
-
-                        if(context.GenreSet.FirstOrDefault( g => g.Name == input ) == null)
-
-                                Console.Write( $"\n   No genre with the name \"{input}\" was found in the Set!\n".ForegroundColor( "190,20,30" ) );
-                        else
-                        {
-                                context.GenreSet.Remove( context.GenreSet.FirstOrDefault( g => g.Name == input )! );
-
-                                Console.Write( $"\n  - Removed the genre \"{input}\"\n".ForegroundColor( "green" ) );
-
-                                context.SaveChanges( );
-                        }
-                WaitForEnter( );
-        }
 
         #endregion
 
@@ -377,28 +359,7 @@ internal class Program
         /// <param name="context">
         /// The music store context.
         /// </param>
-        private static void DeleteArtist( IContext context )
-        {
-                Console.Write( $"\n  Delete Artist\n  {new string( '─' , 31 )}\n  " );
-
-                string input = Console.ReadLine( )!;
-
-
-                if(CheckForEmptyInput( input , -1 ))
-
-                        if(context.ArtistSet.FirstOrDefault( a => a.Name == input ) == null)
-
-                                Console.Write( $"\n   No artist with the name \"{input}\" was found in the Set!\n".ForegroundColor( "190,20,30" ) );
-                        else
-                        {
-                                context.ArtistSet.Remove( context.ArtistSet.FirstOrDefault( a => a.Name == input )! );
-
-                                Console.Write( $"\n  - Removed the artist \"{input}\"\n".ForegroundColor( "green" ) );
-
-                                context.SaveChanges( );
-                        }
-                WaitForEnter( );
-        }
+        private static void DeleteArtist( IContext context ) => Controll<Artist>.Delete( context );
 
         #endregion
 
@@ -445,11 +406,7 @@ internal class Program
         /// <param name="context">
         /// The music store context.
         /// </param>
-        private static void DeleteAlbum( IContext context )
-        {
-                throw new NotImplementedException( );
-        }
-
+        private static void DeleteAlbum( IContext context ) => Controll<Album>.Delete( context );
         #endregion
 
 
@@ -495,10 +452,7 @@ internal class Program
         /// <param name="context">
         /// The music store context.
         /// </param>
-        private static void DeleteTrack( IContext context )
-        {
-                throw new NotImplementedException( );
-        }
+        private static void DeleteTrack( IContext context ) => Controll<Track>.Delete( context );
 
         #endregion
 
