@@ -107,8 +107,9 @@ public static class Controll<T> where T : EntityObject
 
                                 if(a is Album al)
                                 {
-                                        throw new NotImplementedException();
+                                        Artist artist = FindOrAddArtist( context );
 
+                                        al.ArtistId = artist.Id;
                                 }
 
                                 set.Add( a );
@@ -125,6 +126,29 @@ public static class Controll<T> where T : EntityObject
                 }
                 // Wait for user to acknowledge before continuing
                 Console.ReadLine( );
+        }
+
+        private static Artist FindOrAddArtist( IContext context )
+        {
+                string input = string.Empty;
+
+                Console.Write( "\n  Choose an Artist: ".ForegroundColor( "190,120,40" ) );
+
+                input = Console.ReadLine( )!;
+
+                var a = context.ArtistSet.FirstOrDefault( a => a.Name == input );
+
+                if(a == null && input != string.Empty)
+                {
+                        Artist ar = new( ) { Name = input };
+
+                        context.ArtistSet.Add( ar );
+
+                        context.SaveChanges( );
+
+                        a = ar;
+                }
+                return a;
         }
 
 
