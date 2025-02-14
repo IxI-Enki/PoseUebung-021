@@ -128,6 +128,7 @@ public static class Controll<T> where T : EntityObject
                 Console.ReadLine( );
         }
 
+
         private static Artist FindOrAddArtist( IContext context )
         {
                 string input = string.Empty;
@@ -148,7 +149,7 @@ public static class Controll<T> where T : EntityObject
 
                         a = ar;
                 }
-                return a;
+                return a!;
         }
 
 
