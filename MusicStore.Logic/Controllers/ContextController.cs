@@ -250,8 +250,8 @@ public static class Controll<T> where T : EntityObject
                 Console.Write( result.ForegroundColor( "green" ) );
         }
 
-        internal static void PrintErrorMessage( Exception ex ) => Console.Write( $"\n  {ex.Message}\n".ForegroundColor( "190,20,30" ) );
 
+        internal static void PrintErrorMessage( Exception ex ) => Console.Write( $"\n  {ex.Message}\n".ForegroundColor( "190,20,30" ) );
 
 
         /// <summary>

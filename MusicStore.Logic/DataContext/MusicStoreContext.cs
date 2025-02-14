@@ -20,8 +20,7 @@ public sealed class MusicStoreContext : DbContext, IContext
         /// The path to the directory where the executing assembly resides,
         ///   used for locating connection string files.
         /// </summary>
-        private static readonly string _path
-                = Path.GetDirectoryName( Assembly.GetExecutingAssembly( ).Location )!;
+        private static readonly string _path = Path.GetDirectoryName( Assembly.GetExecutingAssembly( ).Location )!;
 
 
         /// <summary>
