@@ -307,7 +307,7 @@ public static class Controll<T> where T : EntityObject
         /// <summary>
         /// Checks if the input string is empty and prints a message if it is.
         /// </summary>
-        ///S
+        ///
         /// <param name="input">
         /// The string to check.
         /// </param>
