@@ -1,6 +1,4 @@
-﻿ 
-
-///   N A M E S P A C E   ///
+﻿///   N A M E S P A C E   ///
 namespace MusicStore.ConApp;
 
 
@@ -208,7 +206,7 @@ internal class Program
         /// <param name="context">
         /// The music store context.
         /// </param>
-        private static void PrintGenres( IContext context ) => PrintHeader( context , 'g' );
+        private static void PrintGenres( IContext context ) => PrintContext( context , 'g' );
 
         /// <summary>
         /// Queries genres based on a user-provided condition.
@@ -262,12 +260,11 @@ internal class Program
 
                                 context.GenreSet.Add( genre );
 
-
                                 Console.Write( $"\n   - Added the genre \"{input}\"\n".ForegroundColor( "green" ) );
 
                                 context.SaveChanges( );
                         }
-                ResetInput( );
+                WaitForEnter( );
         }
 
         /// <summary>
@@ -293,12 +290,11 @@ internal class Program
                         {
                                 context.GenreSet.Remove( context.GenreSet.FirstOrDefault( g => g.Name == input )! );
 
-
                                 Console.Write( $"\n  - Removed the genre \"{input}\"\n".ForegroundColor( "green" ) );
 
                                 context.SaveChanges( );
                         }
-                ResetInput( );
+                WaitForEnter( );
         }
 
         #endregion
@@ -313,7 +309,7 @@ internal class Program
         /// <param name="context">
         /// The music store context.
         /// </param>
-        private static void PrintArtists( IContext context ) => PrintHeader( context , 'a' );
+        private static void PrintArtists( IContext context ) => PrintContext( context , 'a' );
 
         /// <summary>
         /// Queries artists based on a user-provided condition.
@@ -371,7 +367,7 @@ internal class Program
 
                                 context.SaveChanges( );
                         }
-                ResetInput( );
+                WaitForEnter( );
         }
 
         /// <summary>
@@ -401,7 +397,7 @@ internal class Program
 
                                 context.SaveChanges( );
                         }
-                ResetInput( );
+                WaitForEnter( );
         }
 
         #endregion
@@ -416,7 +412,7 @@ internal class Program
         /// <param name="context">
         /// The music store context.
         /// </param>
-        private static void PrintAlbums( IContext context ) => PrintHeader( context , 'l' );
+        private static void PrintAlbums( IContext context ) => PrintContext( context , 'l' );
 
         /// <summary>
         /// Queries albums based on a user-provided condition.
@@ -466,7 +462,7 @@ internal class Program
         /// <param name="context">
         /// The music store context.
         /// </param>
-        private static void PrintTracks( IContext context ) => PrintHeader( context , 't' );
+        private static void PrintTracks( IContext context ) => PrintContext( context , 't' );
 
         /// <summary>
         /// Queries tracks based on a user-provided condition.
@@ -557,8 +553,8 @@ internal class Program
 
                 static void Print( EntityObject a ) => Console.Write
                            (
-                                string.Concat( 
-#if DEBUG                  
+                                string.Concat(
+#if DEBUG
                                 "  " , $"[id:{a.Id,4}]".BackgroundColor( "80,80,80" ) , $"{" ",5}{(a is Album al
 
                                           ? $" : {(al.Title.Length >= Console.WindowWidth - 23
@@ -583,9 +579,9 @@ internal class Program
 
         private static void PrintErrorMessage( Exception ex ) => Console.Write( $"\n  {ex.Message}\n".ForegroundColor( "190,20,30" ) );
 
-        private static void ResetInput( ) => Console.ReadLine( );
+        private static void WaitForEnter( ) => Console.ReadLine( );
 
-        private static void PrintHeader( IContext context , char v )
+        private static void PrintContext( IContext context , char v )
         {
                 Console.Write( string.Concat( "\n  All " ,
 

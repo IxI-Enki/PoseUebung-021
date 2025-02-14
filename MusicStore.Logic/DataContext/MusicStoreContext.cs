@@ -92,37 +92,39 @@ public sealed class MusicStoreContext : DbContext, IContext
         {
                 base.OnModelCreating( modelBuilder );
 
+                // ALBUM Relationships
                 modelBuilder.Entity<Album>( )
-                    .HasMany( a => a.Tracks )
-                    .WithOne( t => t.Album )
-                    .HasForeignKey( t => t.AlbumId );
+                            .HasMany( a => a.Tracks )
+                            .WithOne( t => t.Album )
+                            .HasForeignKey( t => t.AlbumId );
 
                 modelBuilder.Entity<Album>( )
-                        .HasOne( a => a.Artist )
-                        .WithMany( a => a.Albums )
-                        .HasForeignKey( a => a.ArtistId );
+                            .HasOne( a => a.Artist )
+                            .WithMany( a => a.Albums )
+                            .HasForeignKey( a => a.ArtistId );
 
-
+                // ARTIST Relationships
                 modelBuilder.Entity<Artist>( )
-                    .HasMany( a => a.Albums )
-                    .WithOne( a => a.Artist )
-                    .HasForeignKey( a => a.ArtistId );
+                            .HasMany( a => a.Albums )
+                            .WithOne( a => a.Artist )
+                            .HasForeignKey( a => a.ArtistId );
 
+                // GENRE Relationships
                 modelBuilder.Entity<Genre>( )
-                        .HasMany( g => g.Tracks )
-                        .WithOne( t => t.Genre )
-                        .HasForeignKey( t => t.GenreId );
+                            .HasMany( g => g.Tracks )
+                            .WithOne( t => t.Genre )
+                            .HasForeignKey( t => t.GenreId );
 
+                // TRACK Relationships
+                modelBuilder.Entity<Track>( )
+                            .HasOne( t => t.Album )
+                            .WithMany( a => a.Tracks )
+                            .HasForeignKey( t => t.AlbumId );
 
                 modelBuilder.Entity<Track>( )
-                        .HasOne( t => t.Album )
-                        .WithMany( a => a.Tracks )
-                        .HasForeignKey( t => t.AlbumId );
-
-                modelBuilder.Entity<Track>( )
-                        .HasOne( t => t.Genre )
-                        .WithMany( g => g.Tracks )
-                        .HasForeignKey( t => t.GenreId );
+                            .HasOne( t => t.Genre )
+                            .WithMany( g => g.Tracks )
+                            .HasForeignKey( t => t.GenreId );
         }
 
         #endregion
