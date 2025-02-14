@@ -307,7 +307,7 @@ internal class Program
         /// <param name="context">
         /// The music store context.
         /// </param>
-        private static void AddAlbum( IContext context ) => Controll<Album>.Add<Album>( context );   // TODO: Implement AddAlbum
+        private static void AddAlbum( IContext context ) => Controll<Album>.Add<Album>( context );
 
 
         /// <summary>
