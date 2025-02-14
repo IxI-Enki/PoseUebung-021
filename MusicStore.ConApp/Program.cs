@@ -169,7 +169,6 @@ internal class Program
                 Console.Write( $"  {"Exit",-25}.... x\n" );
                 Console.Write( $" {new string( '━' , 33 )}\n" );
                 Console.Write( $"  Your choice :{' ',-17}" );
-
         }
 
         #endregion
