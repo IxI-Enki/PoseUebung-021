@@ -1,6 +1,4 @@
-﻿using MusicStore.Logic.Controllers;
-
-///   N A M E S P A C E   ///
+﻿///   N A M E S P A C E   ///
 namespace MusicStore.ConApp;
 
 
@@ -48,23 +46,17 @@ internal class Program
 #if DEBUG                       ///  D A T A B A S E   I N I T I A T I O N   
                                 case 0:
                                         ResetDatabaseFromCSV( );
-                                        Console.ForegroundColor = ConsoleColor.Green;
-                                        Console.Write( "\n  Database was reset." );
-                                        Console.ResetColor( );
-                                        Console.Write( "\n  Continue with Enter..." );
-                                        Console.ReadLine( );
+                                        Console.Write( "\n  Database was reset.".ForegroundColor( "green" ) );
+                                        WaitForUser( );
                                         break;
 #endif
                                 ///   G E N R E S   O U T P U T   
                                 case 1:
                                         PrintGenres( context );
-                                        Console.Write( "\n  Continue with Enter..." );
-                                        Console.ReadLine( );
                                         break;
                                 case 2:
                                         QueryGenres( context );
-                                        Console.Write( "\n  Continue with Enter..." );
-                                        Console.ReadLine( );
+                                        WaitForUser( );
                                         break;
                                 case 3:
                                         AddGenre( context );
@@ -76,13 +68,10 @@ internal class Program
                                 ///   A R T I S T S   O U T P U T   
                                 case 5:
                                         PrintArtists( context );
-                                        Console.Write( "\n  Continue with Enter..." );
-                                        Console.ReadLine( );
                                         break;
                                 case 6:
                                         QueryArtists( context );
-                                        Console.Write( "\n  Continue with Enter..." );
-                                        Console.ReadLine( );
+                                        WaitForUser( );
                                         break;
                                 case 7:
                                         AddArtist( context );
@@ -94,13 +83,10 @@ internal class Program
                                 ///   A L B U M S   O U T P U T   
                                 case 9:
                                         PrintAlbums( context );
-                                        Console.Write( "\n  Continue with Enter..." );
-                                        Console.ReadLine( );
                                         break;
                                 case 10:
                                         QueryAlbums( context );
-                                        Console.Write( "\n  Continue with Enter..." );
-                                        Console.ReadLine( );
+                                        WaitForUser( );
                                         break;
                                 case 11:
                                         AddAlbum( context );
@@ -112,13 +98,10 @@ internal class Program
                                 ///   T R A C K S   O U T P U T   
                                 case 13:
                                         PrintTracks( context );
-                                        Console.Write( "\n  Continue with Enter..." );
-                                        Console.ReadLine( );
                                         break;
                                 case 14:
                                         QueryTracks( context );
-                                        Console.Write( "\n  Continue with Enter..." );
-                                        Console.ReadLine( );
+                                        WaitForUser( );
                                         break;
                                 case 15:
                                         AddTrack( context );
@@ -208,7 +191,7 @@ internal class Program
         /// <param name="context">
         /// The music store context.
         /// </param>
-        private static void PrintGenres( IContext context ) => PrintContext( context , 'g' );
+        private static void PrintGenres( IContext context ) => Print( context , 'g' );
 
 
         /// <summary>
@@ -253,7 +236,7 @@ internal class Program
         /// <param name="context">
         /// The music store context.
         /// </param>
-        private static void PrintArtists( IContext context ) => PrintContext( context , 'a' );
+        private static void PrintArtists( IContext context ) => Print( context , 'a' );
 
 
         /// <summary>
@@ -297,7 +280,7 @@ internal class Program
         /// <param name="context">
         /// The music store context.
         /// </param>
-        private static void PrintAlbums( IContext context ) => PrintContext( context , 'l' );
+        private static void PrintAlbums( IContext context ) => Print( context , 'l' );
 
 
         /// <summary>
@@ -340,7 +323,7 @@ internal class Program
         /// <param name="context">
         /// The music store context.
         /// </param>
-        private static void PrintTracks( IContext context ) => PrintContext( context , 't' );
+        private static void PrintTracks( IContext context ) => Print( context , 't' );
 
 
         /// <summary>
@@ -351,6 +334,7 @@ internal class Program
         /// The music store context.
         /// </param>
         private static void QueryTracks( IContext context ) => Controll<Track>.Query( context );
+
 
         /// <summary>
         /// Adds a new track to the context.
@@ -363,6 +347,7 @@ internal class Program
         {
                 throw new NotImplementedException( );
         }
+
 
         /// <summary>
         /// Deletes a track from the context.
@@ -377,17 +362,6 @@ internal class Program
 
 
         #region H E L P E R   M E T H O D S
-
-        /// private static bool CheckForEmptyInput( string? input , int addOrRemoveMod )
-        /// {
-        ///         bool result = input == string.Empty;
-        ///
-        ///         Console.Write( result ? $"  Can not {(addOrRemoveMod < 0 ? "remove" : "add")} empty string {(addOrRemoveMod < 0 ? "from" : "to")} the Set!\n".ForegroundColor( "190,20,30" ) : "" );
-        ///
-        ///         return !result;
-        /// }
-        /// private static void WaitForEnter( ) => Console.ReadLine( );
-        /// private static void PrintErrorMessage( Exception ex ) => Console.Write( $"\n  {ex.Message}\n".ForegroundColor( "190,20,30" ) );
 
         private static void PrintResult( IContext context , char setMod )
         {
@@ -452,7 +426,8 @@ internal class Program
                            );
         }
 
-        private static void PrintContext( IContext context , char v )
+
+        private static void Print( IContext context , char v )
         {
                 Console.Write( string.Concat( "\n  All " ,
 
@@ -461,6 +436,15 @@ internal class Program
                 $"{new string( '─' , 31 )}\n" ) );
 
                 PrintResult( context , v );
+
+                WaitForUser( );
+        }
+
+
+        private static void WaitForUser( )
+        {
+                Console.Write( "\n  Continue with Enter..." );
+                Console.ReadLine( );
         }
 
         #endregion

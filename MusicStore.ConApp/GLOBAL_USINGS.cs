@@ -20,6 +20,7 @@ global using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 //   - Logic   
 global using MusicStore.Logic;
 global using MusicStore.Logic.Entities;
+global using MusicStore.Logic.Controllers;
 //
 global using Genre = MusicStore.Logic.Entities.Genre;
 global using Album = MusicStore.Logic.Entities.Album;
