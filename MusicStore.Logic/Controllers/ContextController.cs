@@ -4,17 +4,43 @@ namespace MusicStore.Logic.Controllers;
 
 public static class Controll<T> where T : EntityObject
 {
+
+        public static void Add<F>( IContext context ) where F : class
+        {
+                string function = "add";
+
+                PrintPrompt( out string type , out string? input , function );
+
+
+                if(!IsEmptyInput( input , 1 ) && GetSet( type , context ) is DbSet<T> set)
+                {
+                        EntityObject? element = GetElement( input , set );
+
+                        if(element == null)
+                        {
+                                set.Add( CreateElement<F>( type , input! )! );
+
+                                PrintResult( type , input! , function );
+
+                                context.SaveChanges( );
+                        }
+                        else
+                                Console.Write( $"\n   The {type} \"{input}\" already exists in the Set!\n".ForegroundColor( "190,20,30" ) );
+                }
+                Console.ReadLine( );
+        }
+
+
+
         public static void Delete( IContext context )
         {
-                string type = typeof( T ).ToString( ).Split( '.' )[ ^1 ];
+                string function = "delete";
 
-                Console.Write( $"\n  Delete {type}\n  {new string( '─' , 31 )}\n  " );
+                PrintPrompt( out string type , out string? input , function );
 
-                string input = Console.ReadLine( )!;
 
                 if(!IsEmptyInput( input , -1 ) && GetSet( type , context ) is DbSet<T> set)
                 {
-
                         EntityObject? element = GetElement( input , set );
 
                         if(element == null)
@@ -24,7 +50,7 @@ public static class Controll<T> where T : EntityObject
                         {
                                 set.Remove( GetElement( input , set )! );
 
-                                Console.Write( $"\n  - Removed the {type} \"{input}\"\n".ForegroundColor( "green" ) );
+                                PrintResult( type , input! , function );
 
                                 context.SaveChanges( );
                         }
@@ -32,7 +58,58 @@ public static class Controll<T> where T : EntityObject
                 Console.ReadLine( );
         }
 
-        private static T? GetElement( string input , DbSet<T> set )
+
+        internal static void PrintPrompt( out string type , out string? input , string function )
+        {
+                type = GetType( );
+
+                if(function != string.Empty && (function.Equals( "add" , StringComparison.InvariantCultureIgnoreCase ) || function.Equals( "delete" , StringComparison.InvariantCultureIgnoreCase )))
+                {
+                        Console.Write( $"\n  {char.ToUpper( function[ 0 ] )}{function[ 1.. ].ToLower( )} {type}\n  {new string( '─' , 28 )}\n  " );
+
+                        input = Console.ReadLine( )!;
+                }
+                else
+                        input = string.Empty;
+        }
+
+
+        internal static void PrintResult( string type , string input , string function )
+        {
+                string result = "\n  ";
+
+                if(function == "delete")
+
+                        result += "- Removed";
+
+                else if(function == "add")
+
+                        result += "- Added";
+
+                result += $" the {type} \"{input}\"\n";
+
+                Console.Write( result.ForegroundColor( "green" ) );
+        }
+
+
+        private static T? CreateElement<F>( string type , string input )
+        {
+                return type switch
+                {
+                        "Genre" when typeof( T ) == typeof( Genre ) => ( T )( object )new Genre { Name = input },
+
+                        "Artist" when typeof( T ) == typeof( Artist ) => ( T )( object )new Artist { Name = input },
+
+                        "Album" when typeof( T ) == typeof( Album ) => ( T )( object )new Album { Title = input },
+
+                        "Track" when typeof( T ) == typeof( Track ) => ( T )( object )new Track { Title = input },
+
+                        _ => null
+                };
+        }
+
+
+        private static T? GetElement( string? input , DbSet<T> set )
         {
                 return set switch
                 {
@@ -47,6 +124,10 @@ public static class Controll<T> where T : EntityObject
                         _ => null
                 };
         }
+
+
+        private static new string GetType( ) => typeof( T ).ToString( ).Split( '.' )[ ^1 ];
+
 
         private static object? GetSet( string type , IContext context )
         {
@@ -63,6 +144,7 @@ public static class Controll<T> where T : EntityObject
                         _ => null,
                 };
         }
+
 
         private static bool IsEmptyInput( string? input , int addOrRemoveMod )
         {

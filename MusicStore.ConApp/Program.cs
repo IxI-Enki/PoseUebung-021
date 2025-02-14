@@ -242,32 +242,8 @@ internal class Program
         /// <param name="context">
         /// The music store context.
         /// </param>
-        private static void AddGenre( IContext context )
-        {
-                var genre = new Genre( );
+        private static void AddGenre( IContext context ) => Controll<Genre>.Add<Genre>( context );
 
-                Console.Write( $"\n  Add Genre\n  {new string( '─' , 31 )}\n   Name [1024]: " );
-
-                string input = Console.ReadLine( )!;
-
-
-                if(CheckForEmptyInput( input , 1 ))
-
-                        if(context.GenreSet.FirstOrDefault( g => g.Name == input ) != null)
-
-                                Console.Write( $"\n   The genre \"{input}\" is already in the Set!\n".ForegroundColor( "190,120,40" ) );
-                        else
-                        {
-                                genre.Name = input;
-
-                                context.GenreSet.Add( genre );
-
-                                Console.Write( $"\n   - Added the genre \"{input}\"\n".ForegroundColor( "green" ) );
-
-                                context.SaveChanges( );
-                        }
-                WaitForEnter( );
-        }
 
         /// <summary>
         /// Deletes a a from the context.
@@ -325,32 +301,7 @@ internal class Program
         /// <param name="context">
         /// The music store context.
         /// </param>
-        private static void AddArtist( IContext context )
-        {
-                var artist = new Artist( );
-
-                Console.Write( $"\n  Add Artist\n  {new string( '─' , 31 )}\n   Name [1024]: " );
-
-                string input = Console.ReadLine( )!;
-
-
-                if(CheckForEmptyInput( input , 1 ))
-
-                        if(context.ArtistSet.FirstOrDefault( a => a.Name == input ) != null)
-
-                                Console.Write( $"\n   The artist \"{input}\" is already in the Set!\n".ForegroundColor( "190,120,40" ) );
-                        else
-                        {
-                                artist.Name = input;
-
-                                context.ArtistSet.Add( artist );
-
-                                Console.Write( $"\n   - Added the artist \"{input}\"\n".ForegroundColor( "green" ) );
-
-                                context.SaveChanges( );
-                        }
-                WaitForEnter( );
-        }
+        private static void AddArtist( IContext context ) => Controll<Artist>.Add<Artist>( context );
 
         /// <summary>
         /// Deletes an artist from the context.
