@@ -1,6 +1,7 @@
 ﻿///   N A M E S P A C E   ///
 namespace MusicStore.Logic.Controllers;
 
+
 /// <summary>
 /// Provides generic methods for managing database entities,
 ///   specifically for adding and deleting records.
@@ -18,6 +19,56 @@ public static class Controll<T> where T : EntityObject
 {
 
         #region ___M E T H O D S___ 
+
+        public static void Query( IContext context )
+        {
+                // Set the operation type
+                string function = "query";
+
+                PrintPrompt( out string type , out string? input , function );
+
+                try
+                {
+                        if(type == "Genre")
+                                foreach(var a in context.GenreSet.AsQueryable( ).Where( input! ).Include( a => a.Tracks ))
+                                        Console.Write( $"{$" [id:{a.Id,3}]".ForegroundColor( "190,120,40" )}   {a}\n" );
+
+                        else if(type == "Artist")
+                                foreach(var a in context.ArtistSet.AsQueryable( ).Where( input! ).Include( a => a.Albums ))
+                                        Console.Write( $"{$" [id:{a.Id,3}]".ForegroundColor( "190,120,40" )}   {a}\n" );
+
+                        else if(type == "Album")
+                        {
+                                // Load all related data in one query
+                                var data = context.AlbumSet
+                                                  .Include( a => a.Tracks )
+                                                  .ThenInclude( t => t.Genre )
+                                                  .Include( a => a.Artist )
+                                                  .ToList( );
+
+                                foreach(var a in data.AsQueryable( ).Where( input! ).Include( a => a.Tracks ))
+                                        Console.Write( $"{$" [id:{a.Id,3}]".ForegroundColor( "190,120,40" )}   \n{a}\n" );
+                        }
+
+                        else if(type == "Track")
+                        {
+                                // Load all related data in one query
+                                var t = context.TrackSet
+                                               .Include( a => a.Album )
+                                               .ThenInclude( a => a.Tracks )
+                                               .Include( a => a.Genre )
+                                               .ToList( );
+
+                                foreach(var a in t.AsQueryable( ).Where( input! ).Include( a => a.Album ))
+                                        Console.Write( $"{$" [id:{a.Id,3}]".ForegroundColor( "190,120,40" )}   \n{a}\n" );
+                        }
+                }
+                catch(Exception ex)
+                {
+                        PrintErrorMessage( ex );
+                }
+        }
+
 
         /// <summary>
         /// Adds a new entity to the specified database context.
@@ -47,8 +98,17 @@ public static class Controll<T> where T : EntityObject
                         // If no element exists with this name
                         if(element == null)
                         {
+
                                 // Create and add new element
-                                set.Add( CreateElement<F>( type , input! )! );
+                                var a = CreateElement<F>( type , input! )!;
+
+                                if(a is Album al)
+                                {
+
+
+                                }
+
+                                set.Add( a );
 
                                 // Notify user of successful addition
                                 PrintResult( type , input! , function );
@@ -131,7 +191,13 @@ public static class Controll<T> where T : EntityObject
                 type = GetType( );
 
                 // Check if function is valid for prompting user
-                if(function != string.Empty && (function.Equals( "add" , StringComparison.InvariantCultureIgnoreCase ) || function.Equals( "delete" , StringComparison.InvariantCultureIgnoreCase )))
+                if(
+                    function != string.Empty
+                    && (
+                    function.Equals( "add" , StringComparison.InvariantCultureIgnoreCase ) ||
+                    function.Equals( "delete" , StringComparison.InvariantCultureIgnoreCase ) ||
+                    function.Equals( "query" , StringComparison.InvariantCultureIgnoreCase )
+                    ))
                 {
                         // Format prompt for user input
                         Console.Write( $"\n  {char.ToUpper( function[ 0 ] )}{function[ 1.. ].ToLower( )} {type}\n  {new string( '─' , 28 )}\n  " );
@@ -179,6 +245,9 @@ public static class Controll<T> where T : EntityObject
                 // Print result in green
                 Console.Write( result.ForegroundColor( "green" ) );
         }
+
+        internal static void PrintErrorMessage( Exception ex ) => Console.Write( $"\n  {ex.Message}\n".ForegroundColor( "190,20,30" ) );
+
 
 
         /// <summary>

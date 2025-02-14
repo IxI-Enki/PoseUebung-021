@@ -210,6 +210,7 @@ internal class Program
         /// </param>
         private static void PrintGenres( IContext context ) => PrintContext( context , 'g' );
 
+
         /// <summary>
         /// Queries genres based on a user-provided condition.
         /// </summary>
@@ -217,23 +218,8 @@ internal class Program
         /// <param name="context">
         /// The music store context.
         /// </param>
-        private static void QueryGenres( IContext context )
-        {
-                Console.Write( $"\n  Query-Genres\n  {new string( '─' , 31 )}\n  " );
+        private static void QueryGenres( IContext context ) => Controll<Genre>.Query( context );
 
-                var query = Console.ReadLine( )!;
-
-                try
-                {
-                        foreach(var a in context.GenreSet.AsQueryable( ).Where( query ).Include( g => g.Tracks ))
-
-                                Console.Write( $"{$" [id:{a.Id,3}]".ForegroundColor( "190,120,40" )}   {a}\n" );
-                }
-                catch(Exception ex)
-                {
-                        PrintErrorMessage( ex );
-                }
-        }
 
         /// <summary>
         /// Adds a new a to the context.
@@ -269,6 +255,7 @@ internal class Program
         /// </param>
         private static void PrintArtists( IContext context ) => PrintContext( context , 'a' );
 
+
         /// <summary>
         /// Queries artists based on a user-provided condition.
         /// </summary>
@@ -276,23 +263,8 @@ internal class Program
         /// <param name="context">
         /// The music store context.
         /// </param>
-        private static void QueryArtists( IContext context )
-        {
-                Console.Write( $"\n  Query-Artists\n  {new string( '─' , 31 )}\n  " );
+        private static void QueryArtists( IContext context ) => Controll<Artist>.Query( context );
 
-                var query = Console.ReadLine( )!;
-
-                try
-                {
-                        foreach(var a in context.ArtistSet.AsQueryable( ).Where( query ).Include( a => a.Albums ))
-
-                                Console.Write( $"{$" [id:{a.Id,3}]".ForegroundColor( "190,120,40" )}   {a}\n" );
-                }
-                catch(Exception ex)
-                {
-                        PrintErrorMessage( ex );
-                }
-        }
 
         /// <summary>
         /// Adds a new artist to the context.
@@ -302,6 +274,7 @@ internal class Program
         /// The music store context.
         /// </param>
         private static void AddArtist( IContext context ) => Controll<Artist>.Add<Artist>( context );
+
 
         /// <summary>
         /// Deletes an artist from the context.
@@ -326,6 +299,7 @@ internal class Program
         /// </param>
         private static void PrintAlbums( IContext context ) => PrintContext( context , 'l' );
 
+
         /// <summary>
         /// Queries albums based on a user-provided condition.
         /// </summary>
@@ -333,10 +307,8 @@ internal class Program
         /// <param name="context">
         /// The music store context.
         /// </param>
-        private static void QueryAlbums( IContext context )
-        {
-                throw new NotImplementedException( );
-        }
+        private static void QueryAlbums( IContext context ) => Controll<Album>.Query( context );
+
 
         /// <summary>
         /// Adds a new album to the context.
@@ -345,10 +317,8 @@ internal class Program
         /// <param name="context">
         /// The music store context.
         /// </param>
-        private static void AddAlbum( IContext context )
-        {
-                throw new NotImplementedException( );
-        }
+        private static void AddAlbum( IContext context ) => Controll<Album>.Add<Album>( context );
+
 
         /// <summary>
         /// Deletes an album from the context.
@@ -372,6 +342,7 @@ internal class Program
         /// </param>
         private static void PrintTracks( IContext context ) => PrintContext( context , 't' );
 
+
         /// <summary>
         /// Queries tracks based on a user-provided condition.
         /// </summary>
@@ -379,10 +350,7 @@ internal class Program
         /// <param name="context">
         /// The music store context.
         /// </param>
-        private static void QueryTracks( IContext context )
-        {
-                throw new NotImplementedException( );
-        }
+        private static void QueryTracks( IContext context ) => Controll<Track>.Query( context );
 
         /// <summary>
         /// Adds a new track to the context.
@@ -410,14 +378,16 @@ internal class Program
 
         #region H E L P E R   M E T H O D S
 
-        private static bool CheckForEmptyInput( string? input , int addOrRemoveMod )
-        {
-                bool result = input == string.Empty;
-
-                Console.Write( result ? $"  Can not {(addOrRemoveMod < 0 ? "remove" : "add")} empty string {(addOrRemoveMod < 0 ? "from" : "to")} the Set!\n".ForegroundColor( "190,20,30" ) : "" );
-
-                return !result;
-        }
+        /// private static bool CheckForEmptyInput( string? input , int addOrRemoveMod )
+        /// {
+        ///         bool result = input == string.Empty;
+        ///
+        ///         Console.Write( result ? $"  Can not {(addOrRemoveMod < 0 ? "remove" : "add")} empty string {(addOrRemoveMod < 0 ? "from" : "to")} the Set!\n".ForegroundColor( "190,20,30" ) : "" );
+        ///
+        ///         return !result;
+        /// }
+        /// private static void WaitForEnter( ) => Console.ReadLine( );
+        /// private static void PrintErrorMessage( Exception ex ) => Console.Write( $"\n  {ex.Message}\n".ForegroundColor( "190,20,30" ) );
 
         private static void PrintResult( IContext context , char setMod )
         {
@@ -482,10 +452,6 @@ internal class Program
                            );
         }
 
-        private static void PrintErrorMessage( Exception ex ) => Console.Write( $"\n  {ex.Message}\n".ForegroundColor( "190,20,30" ) );
-
-        private static void WaitForEnter( ) => Console.ReadLine( );
-
         private static void PrintContext( IContext context , char v )
         {
                 Console.Write( string.Concat( "\n  All " ,
@@ -496,5 +462,6 @@ internal class Program
 
                 PrintResult( context , v );
         }
+
         #endregion
 }
