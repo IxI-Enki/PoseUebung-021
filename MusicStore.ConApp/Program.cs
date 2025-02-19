@@ -200,7 +200,6 @@ internal class Program
         /// </param>
         private static void PrintGenres( IContext context ) => Print( context , 'g' );
 
-
         /// <summary>
         /// Queries genres based on a user-provided condition.
         /// </summary>
@@ -209,7 +208,6 @@ internal class Program
         /// The music store context.
         /// </param>
         private static void QueryGenres( IContext context ) => Controll<Genre>.Query( context );
-
 
         /// <summary>
         /// Adds a new a to the context.
@@ -220,7 +218,6 @@ internal class Program
         /// </param>
         private static void AddGenre( IContext context ) => Controll<Genre>.Add<Genre>( context );
 
-
         /// <summary>
         /// Deletes a a from the context.
         /// </summary>
@@ -229,7 +226,6 @@ internal class Program
         /// The music store context.
         /// </param>
         private static void DeleteGenre( IContext context ) => Controll<Genre>.Delete( context );
-
 
         #endregion
 
@@ -245,7 +241,6 @@ internal class Program
         /// </param>
         private static void PrintArtists( IContext context ) => Print( context , 'a' );
 
-
         /// <summary>
         /// Queries artists based on a user-provided condition.
         /// </summary>
@@ -255,7 +250,6 @@ internal class Program
         /// </param>
         private static void QueryArtists( IContext context ) => Controll<Artist>.Query( context );
 
-
         /// <summary>
         /// Adds a new artist to the context.
         /// </summary>
@@ -264,7 +258,6 @@ internal class Program
         /// The music store context.
         /// </param>
         private static void AddArtist( IContext context ) => Controll<Artist>.Add<Artist>( context );
-
 
         /// <summary>
         /// Deletes an artist from the context.
@@ -289,7 +282,6 @@ internal class Program
         /// </param>
         private static void PrintAlbums( IContext context ) => Print( context , 'l' );
 
-
         /// <summary>
         /// Queries albums based on a user-provided condition.
         /// </summary>
@@ -298,7 +290,6 @@ internal class Program
         /// The music store context.
         /// </param>
         private static void QueryAlbums( IContext context ) => Controll<Album>.Query( context );
-
 
         /// <summary>
         /// Adds a new album to the context.
@@ -309,7 +300,6 @@ internal class Program
         /// </param>
         private static void AddAlbum( IContext context ) => Controll<Album>.Add<Album>( context );
 
-
         /// <summary>
         /// Deletes an album from the context.
         /// </summary>
@@ -318,6 +308,7 @@ internal class Program
         /// The music store context.
         /// </param>
         private static void DeleteAlbum( IContext context ) => Controll<Album>.Delete( context );
+
         #endregion
 
 
