@@ -112,6 +112,7 @@ public static class Controll<T> where T : EntityObject
                                         al.ArtistId = artist.Id;
                                 }
 
+
                                 set.Add( a );
 
                                 // Notify user of successful addition

@@ -163,7 +163,7 @@ internal class Program
                 Console.Write( $"  {nameof( DeleteTrack/*      */),-25}... {index++}\n" );
 #if DEBUG
                 Console.Write( $" {new string( '┄' , 33 ),-25}\n" );
-                Console.Write( $"  {nameof( OverrideOldDatabase ),-25}... {index++}\n" );
+                Console.Write( $"  {nameof( OverrideOldDatabase ),-25}... {index++}\n".ForegroundColor("red") );
 #endif
                 Console.Write( $"  {new string( '─' , 31 ),-25}\n" );
                 Console.Write( $"  {"Exit",-25}.... x\n" );
